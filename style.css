@@ -1,8 +1,20 @@
 html {
   text-align: center;
+  background-color: #FF4F3F;
 }
 h1 {
   font-family: 'Shrikhand', cursive;
-  font-size: 50px;
+  font-size: 70px;
   margin: 0;
+}
+#innerbox_div{
+  display: flex;
+  flex-flow: row wrap;
+}
+#innerbox_div div{
+  background-color: #FF7F33;
+  border-radius: 15%;
+  margin: 10px;
+  height: 200px;
+  width: 200px;
 }
