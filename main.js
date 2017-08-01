@@ -1,21 +1,26 @@
+/*It helped me to build the markup that I wanted using only html and css,
+and then program the JS to create an exact replica of my markup.*/
+let scriptLoadingText = document.getElementById("script_load_text");
+scriptLoadingText.style.display = 'none';
+let preGameBody = document.getElementById("pre_game_body");
 let gameBodyId = document.getElementById("game_body");
+preGameBody.style.display = 'block';
 gameBodyId.style.display = 'none';
 var timerElement = document.querySelectorAll(".timer_start");
 console.log(timerElement);
 function startGame(){
-  gameBodyId.style.display = 'inline';
+  preGameBody.style.display = 'none';
+  gameBodyId.style.display = 'block';
+  createGameBoard();
 }
 function playercick(){
   timerBeginCount();
 }
 
 
-// function (){
-//
-// }
+function createGameBoard(){
 
-
-
+}
 
 
 function timerBeginCount(){
@@ -24,15 +29,11 @@ console.log(timerClassArray);
 for (let i = 0; i < timerElement.length; i++){
   timerClassArray[0].classList.remove('timer_start');
 }
-//Set Time + 5 mins
 let countDownDate = new Date().getTime();
 countDownDate = countDownDate + 300000;
-// Update the count down every 1 second
   var x = setInterval(function() {
     let now = new Date().getTime();
-    // Find the distance between now an the count down date
     let distance = countDownDate - now;
-    // Time calculations for days, hours, minutes and seconds
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
     document.getElementById("clockdiv").innerHTML = minutes + "m " + seconds + "s ";
@@ -43,6 +44,9 @@ countDownDate = countDownDate + 300000;
     }
   }, 1000);
 };
+
+
+
 /*
 Addd a listener to all options
 if one is clicked, keep it displayed
