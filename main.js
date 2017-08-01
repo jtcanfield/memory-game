@@ -11,19 +11,23 @@ function startGame(){
   createGameBoard();
 }
 //BEGIN INTRO
-function createGameBoard(){
-  function holderDivisions(){
+function createPreGame(name){
+  function preGameGenerator(){
     let holder = `
     <div id="pre_game_body">
-      <button id="start_game" onclick="startGame()">START GAME!</button>
+      <button id="start_game" onclick="startCountDown()">START GAME!</button>
     </div>
     `;
    return holder
   }
   let htmlBody = document.querySelector("body");
-  let gameBoardBody = holderDivisions();
-  htmlBody.innerHTML = gameBoardBody;
-  timerBeginCount();
+  let preGameHolder = preGameGenerator();
+  htmlBody.innerHTML = preGameHolder;
+  //BEGIN COUNTDOWN TO START
+  function startCountDown(){
+    htmlBody.remove()
+  }
+  //END COUNTDOWN TO START
 }
 //END INTRO
 //BEGIN CREATE GAME BOARD
