@@ -3,9 +3,8 @@ html {
   background-color: #FF4F3F;
 }
 #name_entry{
-  margin: 0;
   height: 90%;
-  width: 100%;
+  width: 98%;
   display: flex;
   justify-content: center;
   flex-direction: column;
