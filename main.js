@@ -3,7 +3,16 @@ console.log(timerElement);
 function playercick(){
   timerBeginCount();
 }
-// timerElement.addEventListener("click", timerBeginCount);
+
+
+// function (){
+//
+// }
+
+
+
+
+
 function timerBeginCount(){
 let timerClassArray = document.getElementsByClassName("timer_start");
 console.log(timerClassArray);
@@ -35,4 +44,8 @@ if one is clicked, keep it displayed
 if two is clicked, compare and see if they match
 if they do not match, make them hidden
 if they do match, keep them up
+
+while (game running){
+code will do this
+}
 */
