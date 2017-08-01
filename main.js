@@ -1,5 +1,10 @@
+let gameBodyId = document.getElementById("game_body");
+gameBodyId.style.display = 'none';
 var timerElement = document.querySelectorAll(".timer_start");
 console.log(timerElement);
+function startGame(){
+  gameBodyId.style.display = 'inline';
+}
 function playercick(){
   timerBeginCount();
 }
