@@ -9,10 +9,12 @@ function askForName(){
   function nameAsker(){
     let holder = `
     <div id="name_entry">
-      <h2>Whats your name?</h2>
-      <input id="name_input"></input>
-      <br>
-      <button onclick="createPreGame()">Submit</button>
+      <div id="name_entry_inner_box">
+        <h2>Whats your name?</h2>
+        <input id="name_input"></input>
+        <br>
+        <button onclick="createPreGame()">Submit</button>
+      </div>
     </div>
     `;
    return holder

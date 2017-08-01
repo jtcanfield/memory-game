@@ -2,6 +2,15 @@ html {
   text-align: center;
   background-color: #FF4F3F;
 }
+#name_entry{
+  margin: 0;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: absolute;
+}
 h1 {
   font-family: 'Shrikhand', cursive;
   font-size: 70px;
