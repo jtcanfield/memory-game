@@ -8,7 +8,7 @@ askForName();
 function askForName(){
   function nameAsker(){
     let holder = `
-    <div id="name_entry" onclick="createPreGame()">
+    <div id="name_entry" onclick="checkName()">
       <div id="name_entry_inner_box">
         <h2>Whats your name?</h2>
         <br>
@@ -29,35 +29,38 @@ function askForName(){
   textFocus.select();
 }
 //END NAME ENTRY
-//BEGIN INTRO
+//BEGIN NAME CHECKER
 let noNameTries = 0;
-function createPreGame(correctObject){
+function checkName(){
   let userName = document.getElementById("name_input_box").value;
   let textFocus = document.getElementById("name_plate_announcement");
   let arrayOfText = ["Oh come on.... at least *try* to put a name in!", "Could ya please put your name in?", "Pretty pleeeeease??", "Okay, Fine!"]
   if (userName === "" && noNameTries <= 3){
-    console.log(arrayOfText[noNameTries]);
     textFocus.innerHTML = arrayOfText[noNameTries];
     noNameTries = noNameTries + 1;
     let reAdd = document.getElementById("name_input_box");
-    reAdd.focus();
-    reAdd.select();
-    return
+    if (noNameTries <= 3){
+      reAdd.focus();
+      reAdd.select();
+      return
+    }
   }
   if (noNameTries >= 1 && noNameTries <= 3){ textFocus.innerHTML = "Thank you....."; }
   if (userName === ""){ userName = "Unnamed Victim";}
-  
-  function preGameGenerator(){
+  fadeOut(document.getElementById("name_entry"), .01);
+  setTimeout(function() { createPreGame(userName);}, 5000);
+}
+//END NAME CHECKER
+//BEGIN INTRO
+function createPreGame(userName){
     let holder = `
     <div id="pre_game_body">
       <h1>Welcome ${userName}, Click to Start!</h1>
       <button id="start_game" onclick="startCountDown()">START GAME!</button>
     </div>
     `;
-   return holder
-  }
-  let preGameHolder = preGameGenerator();
-  htmlBody.innerHTML = preGameHolder;
+  htmlBody.innerHTML = holder;
+  fadeIn(document.getElementById("pre_game_body"), .01);
 }
 //END INTRO
 //BEGIN COUNTDOWN TO START
@@ -121,28 +124,34 @@ countDownDate = countDownDate + 300000;
   }, 1000);
 };
 //END CREATE TIMER AND COUNTDOWN
-/*
-function blogPost (title, date, content) {
-  let post = `
-    <article>
-      <h2>${title}</h2>
-      <span class="date">${date}</span>
-      <div class="post">
-        ${content}
-      </div>
-    </article>
-  `;
- return post
-}
-let post1 = blogPost("Intro to Hang Gliding", "April 1st", "Lorem ipsum dolor...");
-console.log(post1);
-*/
+
 
 function playercick(divClicked){
   console.log(divClicked);
 }
 
-
+//BEGIN FADE FUNCTIONS
+function fadeOut(element, speed){
+  element.style.opacity = 1;
+  (function fade() {
+    if ((element.style.opacity -= speed) < 0) {
+      element.style.display = "none";
+    } else {
+      requestAnimationFrame(fade);
+    }
+  })();
+}
+function fadeIn(element, speed){
+  element.style.opacity = 0;
+  (function fade() {
+    var val = parseFloat(element.style.opacity);
+    if (!((val += speed) > 1)) {
+      element.style.opacity = val;
+      requestAnimationFrame(fade);
+    }
+  })();
+}
+//END FADE FUNCTIONS
 
 /*
 Addd a listener to all options
