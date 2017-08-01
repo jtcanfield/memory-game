@@ -1,9 +1,9 @@
 html {
   text-align: center;
   background-color: #FF4F3F;
+  font-family: 'Shrikhand', cursive;
 }
 h1 {
-  font-family: 'Shrikhand', cursive;
   font-size: 70px;
   margin: 0;
 }
@@ -24,7 +24,7 @@ h1 {
   background-color: #FF9F63;
   transform: scale(1.2);
 }
-#name_entry{
+#name_entry, #pre_game_body, #count_down_timer{
   height: 90%;
   width: 98%;
   display: flex;
@@ -49,7 +49,4 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-}
-#pre_game_body{
-  top: 40%;
 }

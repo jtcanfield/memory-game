@@ -6,7 +6,6 @@ let htmlBody = document.querySelector("body");
 askForName();
 //BEGIN NAME ENTRY
 function askForName(){
-  function nameAsker(){
     let holder = `
     <div id="name_entry" onclick="checkName()">
       <div id="name_entry_inner_box">
@@ -20,10 +19,7 @@ function askForName(){
       </div>
     </div>
     `;
-   return holder
-  }
-  let nameVariable = nameAsker();
-  htmlBody.innerHTML = nameVariable;
+  htmlBody.innerHTML = holder;
   let textFocus = document.getElementById("name_input_box");
   textFocus.focus();
   textFocus.select();
@@ -47,8 +43,7 @@ function checkName(){
   }
   if (noNameTries >= 1 && noNameTries <= 3){ textFocus.innerHTML = "Thank you....."; }
   if (userName === ""){ userName = "Unnamed Victim";}
-  let divHolder = document.getElementById("name_entry");
-  divHolder.setAttribute("onclick", " ");
+  (document.getElementById("name_entry")).setAttribute("onclick", " ");
   fadeOut(document.getElementById("name_entry"), .01);
   setTimeout(function() { createPreGame(userName);}, 2000);
 }
@@ -57,17 +52,33 @@ function checkName(){
 function createPreGame(userName){
     let holder = `
     <div id="pre_game_body">
-      <h1>Welcome ${userName}, Click to Start!</h1>
-      <button id="start_game" onclick="startCountDown()">START GAME!</button>
+      <h2>Welcome ${userName}!</h2>
+      <p>You have five minutes to match all of the memes. When you are ready, click anywhere to start!</p>
     </div>
     `;
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_body"), .01);
+  setTimeout(function() { (document.getElementById("pre_game_body")).setAttribute("onclick", "startCountDown()");}, 2000);
 }
 //END INTRO
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
-  createGameBoard();
+  fadeOut(document.getElementById("pre_game_body"), .1);
+  function countDownText(second){
+    let holder = `
+    <div id="count_down_timer">
+    <h1>${second}</h1>
+    </div>
+    `;
+    htmlBody.innerHTML = holder;
+    fadeOut(document.getElementById("count_down_timer"), .05);
+   return
+  }
+  setTimeout(function() { countDownText(4);}, 1000);
+  setTimeout(function() { countDownText(3);}, 2000);
+  setTimeout(function() { countDownText(2);}, 3000);
+  setTimeout(function() { countDownText(1);}, 4000);
+  setTimeout(function() { createGameBoard();}, 5000);
 }
 //END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
