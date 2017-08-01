@@ -47,8 +47,10 @@ function checkName(){
   }
   if (noNameTries >= 1 && noNameTries <= 3){ textFocus.innerHTML = "Thank you....."; }
   if (userName === ""){ userName = "Unnamed Victim";}
+  let divHolder = document.getElementById("name_entry");
+  divHolder.setAttribute("onclick", " ");
   fadeOut(document.getElementById("name_entry"), .01);
-  setTimeout(function() { createPreGame(userName);}, 5000);
+  setTimeout(function() { createPreGame(userName);}, 2000);
 }
 //END NAME CHECKER
 //BEGIN INTRO
@@ -130,14 +132,16 @@ function playercick(divClicked){
   console.log(divClicked);
 }
 
-//BEGIN FADE FUNCTIONS
+//BEGIN STANDALONE FADE FUNCTIONS
 function fadeOut(element, speed){
   element.style.opacity = 1;
   (function fade() {
     if ((element.style.opacity -= speed) < 0) {
       element.style.display = "none";
+      return "done"
     } else {
       requestAnimationFrame(fade);
+      // console.log(element.style.opacity);
     }
   })();
 }
@@ -148,10 +152,13 @@ function fadeIn(element, speed){
     if (!((val += speed) > 1)) {
       element.style.opacity = val;
       requestAnimationFrame(fade);
+    } else {
+      // console.log("done fading in");
+      return "done"
     }
   })();
 }
-//END FADE FUNCTIONS
+//END STANDALONE FADE FUNCTIONS
 
 /*
 Addd a listener to all options
