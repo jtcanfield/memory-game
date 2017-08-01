@@ -3,32 +3,70 @@ and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let preGameBody = document.getElementById("pre_game_body");
-let gameBodyId = document.getElementById("game_body");
 preGameBody.style.display = 'block';
-gameBodyId.style.display = 'none';
 var timerElement = document.querySelectorAll(".timer_start");
 console.log(timerElement);
 function startGame(){
   preGameBody.style.display = 'none';
   createGameBoard();
-  gameBodyId.style.display = 'block';
 }
-
+//BEGIN INTRO
 function createGameBoard(){
-  return
-}
-
-function playercick(){
+  function holderDivisions(){
+    let holder = `
+    <div id="pre_game_body">
+      <button id="start_game" onclick="startGame()">START GAME!</button>
+    </div>
+    `;
+   return holder
+  }
+  let htmlBody = document.querySelector("body");
+  let gameBoardBody = holderDivisions();
+  htmlBody.innerHTML = gameBoardBody;
   timerBeginCount();
 }
-
-
-function timerBeginCount(){
-let timerClassArray = document.getElementsByClassName("timer_start");
-console.log(timerClassArray);
-for (let i = 0; i < timerElement.length; i++){
-  timerClassArray[0].classList.remove('timer_start');
+//END INTRO
+//BEGIN CREATE GAME BOARD
+function createGameBoard(){
+  function holderDivisions(){
+    let holder = `
+    <div id="game_body">
+      <h1>The Annoying Memory Game</h1>
+        <div id="clockdiv"></div>
+      <div id="outerbox_div">
+        <div id="innerbox_div">
+          <div onclick="playercick(this)"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+          <div onclick="playercick()"></div>
+        </div>
+      </div>
+    </div>
+    `;
+   return holder
+  }
+  let htmlBody = document.querySelector("body");
+  let gameBoardBody = holderDivisions();
+  htmlBody.innerHTML = gameBoardBody;
+  timerBeginCount();
 }
+//END CREATE GAME BOARD
+//BEGIN CREATE TIMER AND COUNTDOWN
+function timerBeginCount(){
 let countDownDate = new Date().getTime();
 countDownDate = countDownDate + 300000;
   var x = setInterval(function() {
@@ -44,6 +82,27 @@ countDownDate = countDownDate + 300000;
     }
   }, 1000);
 };
+//END CREATE TIMER AND COUNTDOWN
+/*
+function blogPost (title, date, content) {
+  let post = `
+    <article>
+      <h2>${title}</h2>
+      <span class="date">${date}</span>
+      <div class="post">
+        ${content}
+      </div>
+    </article>
+  `;
+ return post
+}
+let post1 = blogPost("Intro to Hang Gliding", "April 1st", "Lorem ipsum dolor...");
+console.log(post1);
+*/
+
+function playercick(divClicked){
+  console.log(divClicked);
+}
 
 
 
