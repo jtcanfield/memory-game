@@ -83,6 +83,7 @@ function startCountDown(){
 }
 //END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
+let gameCardsObject = [] ;
 function createGameBoard(){
     let holderLargeDivisions = `
     <div id="game_body">
@@ -90,7 +91,6 @@ function createGameBoard(){
         <div id="clockdiv"></div>
       <div id="outerbox_div">
         <div id="innerbox_div">
-          <div onclick="playercick(this)"></div>
         </div>
       </div>
     </div>
@@ -98,11 +98,21 @@ function createGameBoard(){
   htmlBody.innerHTML = holderLargeDivisions;
   timerBeginCount();
   function createRandomizedBoxDivs(maxCards){
+    let amountOfImages = 0;
+    let imagesNeeded = maxCards/2;
     let amountOfCards = 0;
     let parentToAddTo = document.getElementById("innerbox_div");
+    // while (amountOfCards < maxCards){
+    //   let newObjectPart1 = new Object();
+    //   newObjectPart1.img = "John";
+    //   gameCardsObject.push("newObject")
+    //   let newObjectPart2 = new Object();
+    //   newObjectPart2.img = "John";
+    //   gameCardsObject.push("newObject")
+    // }
     while (amountOfCards < maxCards){
       let newCard = document.createElement("div");
-      newCard.setAttribute("onclick", "playercick(this)");
+      newCard.setAttribute("onclick", "playercick(this, "+amountOfCards+")");
       parentToAddTo.appendChild(newCard);
       amountOfCards++;
     }
@@ -130,8 +140,11 @@ countDownDate = countDownDate + 300000;
 //END CREATE TIMER AND COUNTDOWN
 
 
-function playercick(divClicked){
+function playercick(divClicked, divNumber){
+  let lengthOfBoard = document.getElementById("innerbox_div").children.length;
+  console.log(lengthOfBoard);
   console.log(divClicked);
+  console.log(divNumber);
 }
 
 //BEGIN STANDALONE FADE FUNCTIONS
