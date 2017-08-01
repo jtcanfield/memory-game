@@ -2,19 +2,28 @@
 and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
-let preGameBody = document.getElementById("pre_game_body");
-preGameBody.style.display = 'block';
-var timerElement = document.querySelectorAll(".timer_start");
-console.log(timerElement);
-function startGame(){
-  preGameBody.style.display = 'none';
-  createGameBoard();
+askForName();
+//BEGIN NAME ENTRY
+function askForName(){
+  function preGameGenerator(){
+    let holder = `
+    <div id="as">
+      <input id="start_game" onclick="createPreGame(name)">START GAME!</button>
+    </div>
+    `;
+   return holder
+  }
+  let htmlBody = document.querySelector("body");
+  let preGameHolder = preGameGenerator();
+  htmlBody.innerHTML = preGameHolder;
 }
+//END NAME ENTRY
 //BEGIN INTRO
-function createPreGame(name){
+function createPreGame(){
   function preGameGenerator(){
     let holder = `
     <div id="pre_game_body">
+      <h1>Welcome ${name}, Click to Start!</h1>
       <button id="start_game" onclick="startCountDown()">START GAME!</button>
     </div>
     `;
@@ -23,13 +32,15 @@ function createPreGame(name){
   let htmlBody = document.querySelector("body");
   let preGameHolder = preGameGenerator();
   htmlBody.innerHTML = preGameHolder;
-  //BEGIN COUNTDOWN TO START
-  function startCountDown(){
-    htmlBody.remove()
-  }
-  //END COUNTDOWN TO START
 }
 //END INTRO
+//BEGIN COUNTDOWN TO START
+function startCountDown(){
+  let htmlBody = document.getElementById("pre_game_body");
+  htmlBody.remove();
+  createGameBoard();
+}
+//END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
 function createGameBoard(){
   function holderDivisions(){
