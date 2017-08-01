@@ -10,8 +10,8 @@ var timerElement = document.querySelectorAll(".timer_start");
 console.log(timerElement);
 function startGame(){
   preGameBody.style.display = 'none';
-  gameBodyId.style.display = 'block';
   createGameBoard();
+  gameBodyId.style.display = 'block';
 }
 function playercick(){
   timerBeginCount();
