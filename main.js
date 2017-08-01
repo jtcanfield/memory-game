@@ -7,9 +7,8 @@ function playercick(){
 function timerBeginCount(){
 let timerClassArray = document.getElementsByClassName("timer_start");
 console.log(timerClassArray);
-for (let i = 0; i < timerElement.length+1; i++){
-  timerClassArray.classList.remove('timer_start');
-  console.log(timerElement[i]);
+for (let i = 0; i < timerElement.length; i++){
+  timerClassArray[0].classList.remove('timer_start');
 }
 //Set Time + 5 mins
 let countDownDate = new Date().getTime();
