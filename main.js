@@ -1,8 +1,16 @@
-
-var timerElement = document.getElementsByClassName("timer_start");
+var timerElement = document.querySelectorAll(".timer_start");
 console.log(timerElement);
-timerElement.addEventListener("click", timerBeginCount);
+function playercick(){
+
+}
+// timerElement.addEventListener("click", timerBeginCount);
 function timerBeginCount(){
+let timerClassArray = document.getElementsByClassName("timer_start");
+console.log(timerClassArray);
+for (let i = 0; i < timerElement.length+1; i++){
+  timerClassArray.classList.remove('timer_start');
+  console.log(timerElement[i]);
+}
 //Set Time + 5 mins
 let countDownDate = new Date().getTime();
 countDownDate = countDownDate + 300000;
@@ -22,3 +30,10 @@ countDownDate = countDownDate + 300000;
     }
   }, 1000);
 };
+/*
+Addd a listener to all options
+if one is clicked, keep it displayed
+if two is clicked, compare and see if they match
+if they do not match, make them hidden
+if they do match, keep them up
+*/
