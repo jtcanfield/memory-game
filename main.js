@@ -1,21 +1,21 @@
 /*It helped me to build the markup that I wanted using only html and css,
 and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
+let htmlBody = document.querySelector("body");
 scriptLoadingText.style.display = 'none';
 askForName();
 //BEGIN NAME ENTRY
 function askForName(){
-  function preGameGenerator(){
+  function nameAsker(){
     let holder = `
-    <div id="as">
-      <input id="start_game" onclick="createPreGame(name)">START GAME!</button>
+    <div id="name_entry">
+      <input onclick="createPreGame()">START GAME!</button>
     </div>
     `;
    return holder
   }
-  let htmlBody = document.querySelector("body");
-  let preGameHolder = preGameGenerator();
-  htmlBody.innerHTML = preGameHolder;
+  let nameVariable = nameAsker();
+  htmlBody.innerHTML = nameVariable;
 }
 //END NAME ENTRY
 //BEGIN INTRO
@@ -29,15 +29,12 @@ function createPreGame(){
     `;
    return holder
   }
-  let htmlBody = document.querySelector("body");
   let preGameHolder = preGameGenerator();
   htmlBody.innerHTML = preGameHolder;
 }
 //END INTRO
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
-  let htmlBody = document.getElementById("pre_game_body");
-  htmlBody.remove();
   createGameBoard();
 }
 //END COUNTDOWN TO START
@@ -74,7 +71,6 @@ function createGameBoard(){
     `;
    return holder
   }
-  let htmlBody = document.querySelector("body");
   let gameBoardBody = holderDivisions();
   htmlBody.innerHTML = gameBoardBody;
   timerBeginCount();
