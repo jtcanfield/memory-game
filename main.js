@@ -8,12 +8,15 @@ askForName();
 function askForName(){
   function nameAsker(){
     let holder = `
-    <div id="name_entry">
+    <div id="name_entry" onclick="createPreGame()">
       <div id="name_entry_inner_box">
         <h2>Whats your name?</h2>
-        <input id="name_input_box"></input>
         <br>
-        <button id="name_entry_submit" onclick="createPreGame()">Submit</button>
+        <input id="name_input_box"></input>
+        <br><br>
+        <p>Click anywhere to begin...</p>
+        <br><br>
+        <p id="name_plate_announcement"> </p>
       </div>
     </div>
     `;
@@ -21,15 +24,30 @@ function askForName(){
   }
   let nameVariable = nameAsker();
   htmlBody.innerHTML = nameVariable;
+  let textFocus = document.getElementById("name_input_box");
+  textFocus.focus();
+  textFocus.select();
 }
 //END NAME ENTRY
 //BEGIN INTRO
-function createPreGame(){
+let noNameTries = 0;
+function createPreGame(correctObject){
+  let userName = document.getElementById("name_input_box").value;
+  let textFocus = document.getElementById("name_plate_announcement");
+  let arrayOfText = ["Oh come on.... at least *try* to put a name in!", "Could ya please put your name in?", "Pretty pleeeeease??", "Okay, Fine!"]
+  if (userName === "" && noNameTries <= 3){
+    console.log(arrayOfText[noNameTries]);
+    textFocus.innerHTML = arrayOfText[noNameTries];
+    noNameTries = noNameTries + 1;
+    let reAdd = document.getElementById("name_input_box");
+    reAdd.focus();
+    reAdd.select();
+    return
+  }
+  if (noNameTries >= 1 && noNameTries <= 3){ textFocus.innerHTML = "Thank you....."; }
+  if (userName === ""){ userName = "Unnamed Victim";}
+  
   function preGameGenerator(){
-    let userName = document.getElementById("name_input_box").value;
-    if (userName === ""){
-    userName = "Unnamed Victim";
-    }
     let holder = `
     <div id="pre_game_body">
       <h1>Welcome ${userName}, Click to Start!</h1>
