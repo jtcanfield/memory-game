@@ -3,7 +3,8 @@ and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
-askForName();
+// askForName();
+createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -83,40 +84,30 @@ function startCountDown(){
 //END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
 function createGameBoard(){
-  function holderDivisions(){
-    let holder = `
+    let holderLargeDivisions = `
     <div id="game_body">
       <h1>The Annoying Memory Game</h1>
         <div id="clockdiv"></div>
       <div id="outerbox_div">
         <div id="innerbox_div">
           <div onclick="playercick(this)"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
-          <div onclick="playercick()"></div>
         </div>
       </div>
     </div>
     `;
-   return holder
-  }
-  let gameBoardBody = holderDivisions();
-  htmlBody.innerHTML = gameBoardBody;
+  htmlBody.innerHTML = holderLargeDivisions;
   timerBeginCount();
+  function createRandomizedBoxDivs(maxCards){
+    let amountOfCards = 0;
+    let parentToAddTo = document.getElementById("innerbox_div");
+    while (amountOfCards < maxCards){
+      let newCard = document.createElement("div");
+      newCard.setAttribute("onclick", "playercick(this)");
+      parentToAddTo.appendChild(newCard);
+      amountOfCards++;
+    }
+  }
+  createRandomizedBoxDivs(50);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
