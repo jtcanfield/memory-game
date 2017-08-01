@@ -1,7 +1,7 @@
 var timerElement = document.querySelectorAll(".timer_start");
 console.log(timerElement);
 function playercick(){
-
+  timerBeginCount();
 }
 // timerElement.addEventListener("click", timerBeginCount);
 function timerBeginCount(){
