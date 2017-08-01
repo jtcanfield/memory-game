@@ -10,6 +10,17 @@ html {
   flex-direction: column;
   position: absolute;
 }
+#name_input_box{
+  border: none;
+  background-color: #FFB532;
+  border-radius: 99999px;
+  font-size: 50px;
+  /*Input Box Must Change Size On Moblie and Tablet*/
+}
+#name_entry_submit{
+  display: inline;
+  font-size: 30px;
+}
 h1 {
   font-family: 'Shrikhand', cursive;
   font-size: 70px;

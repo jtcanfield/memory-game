@@ -1,8 +1,8 @@
 /*It helped me to build the markup that I wanted using only html and css,
 and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
-let htmlBody = document.querySelector("body");
 scriptLoadingText.style.display = 'none';
+let htmlBody = document.querySelector("body");
 askForName();
 //BEGIN NAME ENTRY
 function askForName(){
@@ -11,9 +11,9 @@ function askForName(){
     <div id="name_entry">
       <div id="name_entry_inner_box">
         <h2>Whats your name?</h2>
-        <input id="name_input"></input>
+        <input id="name_input_box"></input>
         <br>
-        <button onclick="createPreGame()">Submit</button>
+        <button id="name_entry_submit" onclick="createPreGame()">Submit</button>
       </div>
     </div>
     `;
@@ -26,7 +26,7 @@ function askForName(){
 //BEGIN INTRO
 function createPreGame(){
   function preGameGenerator(){
-    let userName = document.getElementById("name_input").value;
+    let userName = document.getElementById("name_input_box").value;
     if (userName === ""){
     userName = "Unnamed Victim";
     }
