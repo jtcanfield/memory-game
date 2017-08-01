@@ -9,7 +9,10 @@ function askForName(){
   function nameAsker(){
     let holder = `
     <div id="name_entry">
-      <input onclick="createPreGame()">START GAME!</button>
+      <h2>Whats your name?</h2>
+      <input id="name_input"></input>
+      <br>
+      <button onclick="createPreGame()">Submit</button>
     </div>
     `;
    return holder
@@ -21,9 +24,13 @@ function askForName(){
 //BEGIN INTRO
 function createPreGame(){
   function preGameGenerator(){
+    let userName = document.getElementById("name_input").value;
+    if (userName === ""){
+    userName = "Unnamed Victim";
+    }
     let holder = `
     <div id="pre_game_body">
-      <h1>Welcome ${name}, Click to Start!</h1>
+      <h1>Welcome ${userName}, Click to Start!</h1>
       <button id="start_game" onclick="startCountDown()">START GAME!</button>
     </div>
     `;
