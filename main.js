@@ -13,13 +13,13 @@ function startGame(){
   createGameBoard();
   gameBodyId.style.display = 'block';
 }
-function playercick(){
-  timerBeginCount();
-}
-
 
 function createGameBoard(){
+  return
+}
 
+function playercick(){
+  timerBeginCount();
 }
 
 
