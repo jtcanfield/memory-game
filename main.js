@@ -83,7 +83,7 @@ function startCountDown(){
 }
 //END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
-let gameCardsObject = [] ;
+let gameCardsObject = [];
 function createGameBoard(){
     let holderLargeDivisions = `
     <div id="game_body">
@@ -101,21 +101,28 @@ function createGameBoard(){
     let amountOfImages = 0;
     let imagesNeeded = maxCards/2;
     let amountOfCards = 0;
+    let amountOfImagesWhile = 0;
     let parentToAddTo = document.getElementById("innerbox_div");
-    // while (amountOfCards < maxCards){
-    //   let newObjectPart1 = new Object();
-    //   newObjectPart1.img = "John";
-    //   gameCardsObject.push("newObject")
-    //   let newObjectPart2 = new Object();
-    //   newObjectPart2.img = "John";
-    //   gameCardsObject.push("newObject")
-    // }
+    let arrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+    while (amountOfImagesWhile < imagesNeeded){
+        let numberPicked = Math.floor(Math.random()*arrayOfNumbers.length);
+        console.log(numberPicked);
+        let newObjectPart1 = new Object();
+        // newObjectPart1.img = "img/memepicture"+numberPicked+".png";
+        // gameCardsObject.push("newObjectPart1");
+        // let newObjectPart2 = new Object();
+        // newObjectPart2.img = "img/memepicture"+numberPicked+".png";
+        // gameCardsObject.push("newObjectPart2");
+        arrayOfNumbers.splice(numberPicked,1);
+      amountOfImagesWhile++;
+    }
     while (amountOfCards < maxCards){
       let newCard = document.createElement("div");
       newCard.setAttribute("onclick", "playercick(this, "+amountOfCards+")");
       parentToAddTo.appendChild(newCard);
       amountOfCards++;
     }
+    console.log(arrayOfNumbers);
   }
   createRandomizedBoxDivs(50);
 }
@@ -156,7 +163,6 @@ function fadeOut(element, speed){
       return "done"
     } else {
       requestAnimationFrame(fade);
-      // console.log(element.style.opacity);
     }
   })();
 }
@@ -168,7 +174,6 @@ function fadeIn(element, speed){
       element.style.opacity = val;
       requestAnimationFrame(fade);
     } else {
-      // console.log("done fading in");
       return "done"
     }
   })();
