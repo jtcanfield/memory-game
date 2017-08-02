@@ -3,8 +3,20 @@ and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
-askForName();
-// createGameBoard();
+createHeader();
+function createHeader(){
+  let setHeader = document.querySelector("head");
+  let holder = `
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Roboto|Shrikhand" rel="stylesheet">
+  <link href="style.css" type="text/css" rel="stylesheet">
+  <title>The Annoying Memory Game</title>
+  `;
+    setHeader.innerHTML = holder;
+}
+// askForName();
+createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -83,8 +95,26 @@ function startCountDown(){
 }
 //END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
-let gameCardsObject = [];
 function createGameBoard(){
+
+
+
+  let gameCardsObject = {
+    "results":[{
+      "name":{
+        "first":"curtis",
+        "last":"ryan",
+      },
+      "name":{
+        "first":"martin",
+        "last":"terry",
+      },
+  }]
+};
+
+
+
+
     let holderLargeDivisions = `
     <div id="game_body">
       <h1>The Annoying Memory Game</h1>
@@ -104,15 +134,15 @@ function createGameBoard(){
     let amountOfImagesWhile = 0;
     let parentToAddTo = document.getElementById("innerbox_div");
     let arrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+
     while (amountOfImagesWhile < imagesNeeded){
-        let numberPicked = Math.floor(Math.random()*arrayOfNumbers.length);
+        // let numberPicked = Math.floor(Math.random()*arrayOfNumbers.length);
+        let numberPicked = amountOfImagesWhile + 1;
         console.log(numberPicked);
-        let newObjectPart1 = new Object();
-        newObjectPart1.img = "img/memepicture"+numberPicked+".png";
-        gameCardsObject.push("newObjectPart1");
-        let newObjectPart2 = new Object();
-        newObjectPart2.img = "img/memepicture"+numberPicked+".png";
-        gameCardsObject.push("newObjectPart2");
+        /*gameCardsObject.firstimage = new Object();
+        gameCardsObject.firstimage.image = "img/memepicture"+numberPicked+".png";
+        gameCardsObject.secondimage = new Object();
+        gameCardsObject.secondimage.image = "img/memepicture"+numberPicked+".png";*/
         arrayOfNumbers.splice(numberPicked,1);
       amountOfImagesWhile++;
     }
@@ -122,7 +152,9 @@ function createGameBoard(){
       parentToAddTo.appendChild(newCard);
       amountOfCards++;
     }
-    console.log(arrayOfNumbers);
+    console.log(gameCardsObject);
+    let theNewMapThing = new Map([gameCardsObject]);
+    console.log(theNewMapThing);
   }
   createRandomizedBoxDivs(50);
 }
