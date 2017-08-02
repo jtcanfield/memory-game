@@ -3,8 +3,8 @@ and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
-// askForName();
-createGameBoard();
+askForName();
+// createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -108,17 +108,17 @@ function createGameBoard(){
         let numberPicked = Math.floor(Math.random()*arrayOfNumbers.length);
         console.log(numberPicked);
         let newObjectPart1 = new Object();
-        // newObjectPart1.img = "img/memepicture"+numberPicked+".png";
-        // gameCardsObject.push("newObjectPart1");
-        // let newObjectPart2 = new Object();
-        // newObjectPart2.img = "img/memepicture"+numberPicked+".png";
-        // gameCardsObject.push("newObjectPart2");
+        newObjectPart1.img = "img/memepicture"+numberPicked+".png";
+        gameCardsObject.push("newObjectPart1");
+        let newObjectPart2 = new Object();
+        newObjectPart2.img = "img/memepicture"+numberPicked+".png";
+        gameCardsObject.push("newObjectPart2");
         arrayOfNumbers.splice(numberPicked,1);
       amountOfImagesWhile++;
     }
     while (amountOfCards < maxCards){
       let newCard = document.createElement("div");
-      newCard.setAttribute("onclick", "playercick(this, "+amountOfCards+")");
+      newCard.setAttribute("onclick", "playerclick(this, "+amountOfCards+")");
       parentToAddTo.appendChild(newCard);
       amountOfCards++;
     }
@@ -137,7 +137,6 @@ countDownDate = countDownDate + 300000;
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
     document.getElementById("clockdiv").innerHTML = minutes + "m " + seconds + "s ";
-    // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x);
       document.getElementById("clockdiv").innerHTML = "EXPIRED";
@@ -146,12 +145,13 @@ countDownDate = countDownDate + 300000;
 };
 //END CREATE TIMER AND COUNTDOWN
 
-
-function playercick(divClicked, divNumber){
+let heartvaue = 7;
+function playerclick(divClicked, divNumber){
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
   console.log(lengthOfBoard);
   console.log(divClicked);
   console.log(divNumber);
+
 }
 
 //BEGIN STANDALONE FADE FUNCTIONS
