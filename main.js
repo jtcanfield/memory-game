@@ -4,24 +4,32 @@ let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
 let gameCardsObject = {
-  "results":[{
-    "meme1":{
+  "results":[
+    {
+      "meme1":{
       "first":"curtis",
       "last":"ryan",
+      }
     },
-    "meme2":{
+    {
+      "meme2":{
       "first":"martin",
       "last":"terry",
+      }
     },
-    "meme3":{
+    {
+      "meme3":{
       "first":"martin",
       "last":"terry",
+      }
     },
-    "meme4":{
+    {
+      "meme4":{
       "first":"martin",
       "last":"terry",
+      }
     },
-  }]
+  ]
 };
 createHeader();
 function createHeader(){
@@ -153,7 +161,8 @@ let holderLargeDivisions = `
       amountOfCards++;
     }
     console.log(gameCardsObject);
-    console.log(gameCardsObject.results[0]);
+    console.log(gameCardsObject.results);
+    console.log(customers.results);
   }
   createRandomizedBoxDivs(50);
 }
