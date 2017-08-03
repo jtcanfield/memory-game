@@ -174,7 +174,9 @@ countDownDate = countDownDate + 300000;
 let heartvaue = 7;
 let numberOfCardsFlipped = 0;
 let cardLastClicked = 99;
+let lastDivClicked = "";
 function playerclick(divClicked, divNumber){
+  // let imageBackgroundOfLastObject = gameCardsObject.results[cardLastClicked].memePicture;
   console.log(divNumber);
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
@@ -186,7 +188,21 @@ function playerclick(divClicked, divNumber){
   divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
   divClicked.setAttribute("class", "flipped");
   numberOfCardsFlipped += 1;
-  console.log(numberOfCardsFlipped);
+  console.log(imageBackground);
+  console.log(lastDivClicked);
+  if (imageBackground === lastDivClicked){
+    setTimeout(function() {
+      flipped[0].classList.add("matched");
+      flipped[0].classList.remove("flipped");
+      flipped[0].classList.add("matched");
+      flipped[0].classList.remove("flipped");
+      numberOfCardsFlipped = 0;
+      cardLastClicked = 99;
+      lastDivClicked = "";
+    }, 1000);
+    return
+  }
+  lastDivClicked = imageBackground;
   if (numberOfCardsFlipped >= 2){
     setTimeout(function() {
       flipped[0].setAttribute("style", "");
@@ -195,6 +211,7 @@ function playerclick(divClicked, divNumber){
       flipped[0].classList.remove("flipped");
       numberOfCardsFlipped = 0;
       cardLastClicked = 99;
+      lastDivClicked = "";
     }, 1000);
   }
 }
