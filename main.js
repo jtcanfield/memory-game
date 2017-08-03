@@ -132,12 +132,10 @@ let holderLargeDivisions = `
         let randomGenIndexToTakeOutOfArray = Math.floor(Math.random()*arrayOfNumbersallowed1.length);
         let numberPickedInArray = arrayOfNumbersallowed1[randomGenIndexToTakeOutOfArray];
         gameCardsObject.results[amountOfImagesWhile] = new Object();
-        gameCardsObject.results[amountOfImagesWhile].memePicture = "img/memepicture"+numberPickedInArray+".png";
+        gameCardsObject.results[amountOfImagesWhile].memePicture = "img/memepicture"+numberPickedInArray+".jpg";
         let secondImageIndex = amountOfImagesWhile+imagesNeeded;
         gameCardsObject.results[secondImageIndex] = new Object();
-        gameCardsObject.results[secondImageIndex].memePicture = "img/memepicture"+numberPickedInArray+".png";
-        console.log(gameCardsObject.results[amountOfImagesWhile].memePicture);
-        console.log(gameCardsObject.results);
+        gameCardsObject.results[secondImageIndex].memePicture = "img/memepicture"+numberPickedInArray+".jpg";
         arrayOfNumbersallowed1.splice(randomGenIndexToTakeOutOfArray,1);
         arrayOfNumbers2.push(amountOfImagesWhile, secondImageIndex);
       amountOfImagesWhile++;
@@ -145,14 +143,12 @@ let holderLargeDivisions = `
     while (amountOfCards < maxCards){
       let randomGenIndexToTakeOutOfArray = Math.floor(Math.random()*arrayOfNumbers2.length);
       let numberPickedInArray = arrayOfNumbers2[randomGenIndexToTakeOutOfArray];
-      console.log(numberPickedInArray);
       let newCard = document.createElement("div");
-      newCard.setAttribute("onclick", "playerclick(this, "+amountOfCards+")");
+      newCard.setAttribute("onclick", "playerclick(this, "+numberPickedInArray+")");
       parentToAddTo.appendChild(newCard);
       arrayOfNumbers2.splice(randomGenIndexToTakeOutOfArray,1);
       amountOfCards++;
     }
-    console.log(gameCardsObject.results[24]);
   }
   createRandomizedBoxDivs(50);
 }
@@ -174,16 +170,21 @@ countDownDate = countDownDate + 300000;
   }, 1000);
 };
 //END CREATE TIMER AND COUNTDOWN
-
+//BEGIN CLICK FUNCTION
 let heartvaue = 7;
+let numberOfCardsFlipped = 0;
 function playerclick(divClicked, divNumber){
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
-  console.log(gameCardsObject.results[0]/*.memePicture[divNumber]*/);
-  console.log(divClicked);
-  console.log(divNumber);
-
+  let imageBackground = gameCardsObject.results[divNumber].memePicture;
+  divClicked.setAttribute("style", "background-image: url("+imageBackground+"); background-size: contain;");
+  numberOfCardsFlipped += 1;
+  console.log(numberOfCardsFlipped);
+  if (numberOfCardsFlipped >= 2){
+    console.log("STHAP");
+    numberOfCardsFlipped = 0;
+  }
 }
-
+//END CLICK FUNCTION
 //BEGIN STANDALONE FADE FUNCTIONS
 function fadeOut(element, speed){
   element.style.opacity = 1;
