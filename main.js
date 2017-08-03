@@ -127,16 +127,20 @@ let holderLargeDivisions = `
     let amountOfImagesWhile = 0;
     let parentToAddTo = document.getElementById("innerbox_div");
     let arrayOfNumbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
-    // let arrayOfNumbers = [];
+    let arrayOfNumbers2 = [];
     while (amountOfImagesWhile < imagesNeeded){
+        let secondImageIndex = amountOfImagesWhile+imagesNeeded;
+        console.log(secondImageIndex);
         let randomGenIndex = Math.floor(Math.random()*arrayOfNumbers1.length);
         let numberPicked = arrayOfNumbers1[randomGenIndex];
-        console.log(gameCardsObject.results);
         gameCardsObject.results[amountOfImagesWhile] = new Object();
-        gameCardsObject.results[amountOfImagesWhile].memePicture = new Object();
         gameCardsObject.results[amountOfImagesWhile].memePicture = "img/memepicture"+numberPicked+".png";
+        gameCardsObject.results[secondImageIndex] = new Object();
+        gameCardsObject.results[secondImageIndex].memePicture = "img/memepicture"+numberPicked+".png";
         console.log(gameCardsObject.results[amountOfImagesWhile].memePicture);
+        console.log(gameCardsObject.results);
         arrayOfNumbers1.splice(randomGenIndex,1);
+        arrayOfNumbers2.push(numberPicked);
       amountOfImagesWhile++;
     }
     while (amountOfCards < maxCards){
@@ -145,7 +149,8 @@ let holderLargeDivisions = `
       parentToAddTo.appendChild(newCard);
       amountOfCards++;
     }
-    console.log(gameCardsObject.results);
+    console.log(gameCardsObject.results[24]);
+    console.log(arrayOfNumbers2);
   }
   createRandomizedBoxDivs(50);
 }
