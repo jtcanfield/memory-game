@@ -173,15 +173,29 @@ countDownDate = countDownDate + 300000;
 //BEGIN CLICK FUNCTION
 let heartvaue = 7;
 let numberOfCardsFlipped = 0;
+let cardLastClicked = 99;
 function playerclick(divClicked, divNumber){
+  console.log(divNumber);
+  if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
+    return
+  }
+  cardLastClicked = divNumber;
+  let flipped = document.getElementsByClassName("flipped");
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
   let imageBackground = gameCardsObject.results[divNumber].memePicture;
-  divClicked.setAttribute("style", "background-image: url("+imageBackground+"); background-size: contain;");
+  divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
+  divClicked.setAttribute("class", "flipped");
   numberOfCardsFlipped += 1;
   console.log(numberOfCardsFlipped);
   if (numberOfCardsFlipped >= 2){
-    console.log("STHAP");
-    numberOfCardsFlipped = 0;
+    setTimeout(function() {
+      flipped[0].setAttribute("style", "");
+      flipped[0].classList.remove("flipped");
+      flipped[0].setAttribute("style", "");
+      flipped[0].classList.remove("flipped");
+      numberOfCardsFlipped = 0;
+      cardLastClicked = 99;
+    }, 1000);
   }
 }
 //END CLICK FUNCTION
