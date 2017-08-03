@@ -49,6 +49,7 @@ function askForName(){
     `;
   htmlBody.innerHTML = holder;
   let textFocus = document.getElementById("name_input_box");
+  // seesaw(document.getElementById("name_entry"), 0.05);
   textFocus.focus();
   textFocus.select();
 }
@@ -115,6 +116,8 @@ let holderLargeDivisions = `
     <div id="game_body">
       <h1>The Annoying Memory Game</h1>
         <div id="clockdiv"></div>
+        <p>Health</p>
+        <div id="health_bar"><span id="health_left"><span id="health_remover"></span></span></div>
       <div id="outerbox_div">
         <div id="innerbox_div">
         </div>
@@ -173,12 +176,13 @@ countDownDate = countDownDate + 300000;
 };
 //END CREATE TIMER AND COUNTDOWN
 //BEGIN CLICK FUNCTION
-let heartvaue = 7;
+let heartRemoved = 0;
 let numberOfCardsFlipped = 0;
 let cardLastClicked = 99;
 let divLastClicked = "";
 let lastDivClickedBackground = "";
 function playerclick(divClicked, divNumber){
+  console.log(divClicked.style.transform);
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
@@ -186,9 +190,23 @@ function playerclick(divClicked, divNumber){
   let flipped = document.getElementsByClassName("flipped");
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
   let imageBackground = gameCardsObject.results[divNumber].memePicture;
-  divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
+  // divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
   divClicked.setAttribute("class", "flipped");
-  divClicked.style.transform = "rotateY(0deg)";
+  let emptyString = "";
+  divClicked.setAttribute("style", "background-image: url("+emptyString+");");
+  let rotatedegre = -180;
+  let rotateintervalfunction = setInterval(function(){
+    // divClicked.style.transform = "rotateY("+rotatedegre+"deg)";
+    if (rotatedegre == -90){
+      divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
+    }
+    if (rotatedegre === 0){
+      clearInterval(rotateintervalfunction);
+    } else {
+      divClicked.style.transform = "rotateY("+rotatedegre+"deg)";
+      rotatedegre++;
+    }
+  }, 2);
   numberOfCardsFlipped += 1;
   if (imageBackground === lastDivClickedBackground){
     correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
@@ -208,6 +226,10 @@ function playerclick(divClicked, divNumber){
   }
   if (numberOfCardsFlipped >= 2){
     incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
+    let healthRemover = document.getElementById("health_remover");
+    console.log(healthRemover);
+    heartRemoved += 3.125;
+    healthRemover.style.width = heartRemoved+"%";
     setTimeout(function() {
       flipped[0].setAttribute("style", "");
       flipped[0].classList.remove("flipped");
@@ -217,7 +239,7 @@ function playerclick(divClicked, divNumber){
       cardLastClicked = 99;
       lastDivClickedBackground = "";
       divLastClicked = "";
-    }, 1000);
+    }, 2000);
   } else {
     lastDivClickedBackground = imageBackground;
     divLastClicked = divClicked;
@@ -271,6 +293,21 @@ function fadeIn(element, speed){
   })();
 }
 //END STANDALONE FADE FUNCTIONS
+//BEGIN BOUNCE FUNCTIONS
+/*
+function seesaw(element, speed){
+  let deg = 0;
+  (function fade() {
+    if ((element.style.transform = 'rotate('+deg+'deg)') >= 2) {
+      deg += speed;
+      requestAnimationFrame(fade);
+    } else {
+      deg += speed;
+      requestAnimationFrame(fade);
+    }
+  })();
+}*/
+//END BOUNCE FUNCTIONS
 
 /*
 Addd a listener to all options

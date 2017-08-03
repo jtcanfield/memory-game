@@ -20,15 +20,16 @@ h1 {
   width: 200px;
   transition: all 0.4s;
   background-size: contain;
-  transform: rotateY(180deg);
+  transform: rotateY(-180deg);
+  /*transform: scaleX(-1);*/
 }
-#innerbox_div div:hover{
+/*#innerbox_div div:hover{
   background-color: #FF9F63;
   transform: scale(1.2);
-  transform: rotateY(180deg);
-}
+  /*transform: rotateY(-180deg);*/
+/*}*/
 #innerbox_div div:active{
-  /*transform: rotateY(180deg);*/
+
 }
 #name_entry, #pre_game_body, #count_down_timer{
   height: 90%;
@@ -38,9 +39,44 @@ h1 {
   flex-direction: column;
   position: absolute;
 }
+#pre_game_body h2{
+  -webkit-animation:zoom 2s infinite;
+}
 #name_entry_inner_box{
   z-index: 10;
+  -webkit-animation:rotate 3s infinite;
   display: inline;
+}
+
+@-webkit-keyframes rotate {
+  0%, 100% {transform: rotateZ(1deg);}
+  50%      {transform: rotateZ(-2deg);}
+}
+@-webkit-keyframes zoom {
+  0%, 100% {transform: scale(1);}
+  50%      {transform: scale(1.1);}
+}
+#health_bar{
+  display: block;
+  background-color: #FFFFFF;
+  /*color: #FFFFFF;*/
+  height: 10px;
+  margin: 0px;
+  padding: 0px;
+  border: 3px groove #FFFFFF;
+}
+#health_left{
+  display: block;
+  background-image: linear-gradient(to right, #FF0000 , #009933);
+  width: 100%;
+  height: 100%;
+}
+#health_remover{
+  display: block;
+  background-color: #FF4F3F;
+  width: 15.625%;
+  float: right;
+  height: 100%;
 }
 #name_input_box{
   border: none;
