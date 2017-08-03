@@ -3,34 +3,19 @@ and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
-let gameCardsObject = {
-  "results":[
-    {
-      "meme1":{
+let gameCardsObject = {//opens parenting object
+  "results":[//opens array
+    /*
+    {//opens first object (unnamed) in array
+      "memePicture":{//opens object within object within array
       "first":"curtis",
       "last":"ryan",
-      }
-    },
-    {
-      "meme2":{
-      "first":"martin",
-      "last":"terry",
-      }
-    },
-    {
-      "meme3":{
-      "first":"martin",
-      "last":"terry",
-      }
-    },
-    {
-      "meme4":{
-      "first":"martin",
-      "last":"terry",
-      }
-    },
-  ]
-};
+      }//closes object within object within array
+    },//closes first object (unnamed) in array
+    */
+
+  ]//closes array
+};//closes parenting object
 createHeader();
 function createHeader(){
   let setHeader = document.querySelector("head");
@@ -137,21 +122,21 @@ let holderLargeDivisions = `
   htmlBody.innerHTML = holderLargeDivisions;
   timerBeginCount();
   function createRandomizedBoxDivs(maxCards){
-    let amountOfImages = 0;
     let imagesNeeded = maxCards/2;
     let amountOfCards = 0;
     let amountOfImagesWhile = 0;
     let parentToAddTo = document.getElementById("innerbox_div");
-    let arrayOfNumbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
-
+    let arrayOfNumbers1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+    // let arrayOfNumbers = [];
     while (amountOfImagesWhile < imagesNeeded){
-        let randomGenIndex = Math.floor(Math.random()*arrayOfNumbers.length);
-        let numberPicked = arrayOfNumbers[randomGenIndex];
-        /*gameCardsObject.firstimage = new Object();
-        gameCardsObject.firstimage.image = "img/memepicture"+numberPicked+".png";
-        gameCardsObject.secondimage = new Object();
-        gameCardsObject.secondimage.image = "img/memepicture"+numberPicked+".png";*/
-        arrayOfNumbers.splice(randomGenIndex,1);
+        let randomGenIndex = Math.floor(Math.random()*arrayOfNumbers1.length);
+        let numberPicked = arrayOfNumbers1[randomGenIndex];
+        console.log(gameCardsObject.results);
+        gameCardsObject.results[amountOfImagesWhile] = new Object();
+        gameCardsObject.results[amountOfImagesWhile].memePicture = new Object();
+        gameCardsObject.results[amountOfImagesWhile].memePicture = "img/memepicture"+numberPicked+".png";
+        console.log(gameCardsObject.results[amountOfImagesWhile].memePicture);
+        arrayOfNumbers1.splice(randomGenIndex,1);
       amountOfImagesWhile++;
     }
     while (amountOfCards < maxCards){
@@ -160,9 +145,7 @@ let holderLargeDivisions = `
       parentToAddTo.appendChild(newCard);
       amountOfCards++;
     }
-    console.log(gameCardsObject);
     console.log(gameCardsObject.results);
-    console.log(customers.results);
   }
   createRandomizedBoxDivs(50);
 }
@@ -188,7 +171,7 @@ countDownDate = countDownDate + 300000;
 let heartvaue = 7;
 function playerclick(divClicked, divNumber){
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
-  console.log(gameCardsObject.results[0]/*.meme[divNumber]*/);
+  console.log(gameCardsObject.results[0]/*.memePicture[divNumber]*/);
   console.log(divClicked);
   console.log(divNumber);
 
