@@ -7,6 +7,9 @@ h1 {
   font-size: 70px;
   margin: 0;
 }
+.wrongAnswer{
+  border: 5px solid #FF0000;
+}
 #innerbox_div{
   display: flex;
   flex-flow: row wrap;

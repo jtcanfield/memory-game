@@ -191,18 +191,21 @@ function playerclick(divClicked, divNumber){
   console.log(imageBackground);
   console.log(lastDivClicked);
   if (imageBackground === lastDivClicked){
+    flipped[0].classList.add("matched");
+    flipped[0].setAttribute("onclick", "");
+    flipped[0].classList.remove("flipped");
+    flipped[0].classList.add("matched");
+    flipped[0].setAttribute("onclick", "");
+    flipped[0].classList.remove("flipped");
     setTimeout(function() {
-      flipped[0].classList.add("matched");
-      flipped[0].classList.remove("flipped");
-      flipped[0].classList.add("matched");
-      flipped[0].classList.remove("flipped");
       numberOfCardsFlipped = 0;
       cardLastClicked = 99;
       lastDivClicked = "";
     }, 1000);
     return
+  } else {
+    lastDivClicked = imageBackground;
   }
-  lastDivClicked = imageBackground;
   if (numberOfCardsFlipped >= 2){
     setTimeout(function() {
       flipped[0].setAttribute("style", "");
@@ -213,6 +216,8 @@ function playerclick(divClicked, divNumber){
       cardLastClicked = 99;
       lastDivClicked = "";
     }, 1000);
+  } else {
+    lastDivClicked = imageBackground;
   }
 }
 //END CLICK FUNCTION
