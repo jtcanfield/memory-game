@@ -182,7 +182,6 @@ let cardLastClicked = 99;
 let divLastClicked = "";
 let lastDivClickedBackground = "";
 function playerclick(divClicked, divNumber){
-  console.log(divClicked.style.transform);
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
@@ -190,60 +189,61 @@ function playerclick(divClicked, divNumber){
   let flipped = document.getElementsByClassName("flipped");
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
   let imageBackground = gameCardsObject.results[divNumber].memePicture;
-  // divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
   divClicked.setAttribute("class", "flipped");
   let emptyString = "";
   divClicked.setAttribute("style", "background-image: url("+emptyString+");");
   let rotatedegre = -180;
-  let rotateintervalfunction = setInterval(function(){
-    // divClicked.style.transform = "rotateY("+rotatedegre+"deg)";
+  function rotateImage(){
+    console.log("function is in action");
     if (rotatedegre == -90){
       divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
-    }
-    if (rotatedegre === 0){
-      clearInterval(rotateintervalfunction);
+    } if (rotatedegre === 0){
+      clearInterval(refreshId);
     } else {
       divClicked.style.transform = "rotateY("+rotatedegre+"deg)";
       rotatedegre++;
     }
-  }, 2);
+  }
+  var refreshId = setInterval(rotateImage, 2);
   numberOfCardsFlipped += 1;
-  if (imageBackground === lastDivClickedBackground){
-    correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
-    flipped[0].classList.add("matched");
-    flipped[0].setAttribute("onclick", "");
-    flipped[0].classList.remove("flipped");
-    flipped[0].classList.add("matched");
-    flipped[0].setAttribute("onclick", "");
-    flipped[0].classList.remove("flipped");
-    setTimeout(function() {
-      numberOfCardsFlipped = 0;
-      cardLastClicked = 99;
-      lastDivClickedBackground = "";
-      divLastClicked = "";
-    }, 1000);
-    return
-  }
-  if (numberOfCardsFlipped >= 2){
-    incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
-    let healthRemover = document.getElementById("health_remover");
-    console.log(healthRemover);
-    heartRemoved += 3.125;
-    healthRemover.style.width = heartRemoved+"%";
-    setTimeout(function() {
-      flipped[0].setAttribute("style", "");
+  setTimeout(function() {
+    if (imageBackground === lastDivClickedBackground){
+      correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
+      flipped[0].classList.add("matched");
+      flipped[0].setAttribute("onclick", "");
       flipped[0].classList.remove("flipped");
-      flipped[0].setAttribute("style", "");
+      flipped[0].classList.add("matched");
+      flipped[0].setAttribute("onclick", "");
       flipped[0].classList.remove("flipped");
-      numberOfCardsFlipped = 0;
-      cardLastClicked = 99;
-      lastDivClickedBackground = "";
-      divLastClicked = "";
-    }, 2000);
-  } else {
-    lastDivClickedBackground = imageBackground;
-    divLastClicked = divClicked;
-  }
+      setTimeout(function() {
+        numberOfCardsFlipped = 0;
+        cardLastClicked = 99;
+        lastDivClickedBackground = "";
+        divLastClicked = "";
+      }, 1000);
+      return
+    }
+    if (numberOfCardsFlipped >= 2){
+      incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
+      let healthRemover = document.getElementById("health_remover");
+      console.log(healthRemover);
+      heartRemoved += 3.125;
+      healthRemover.style.width = heartRemoved+"%";
+      setTimeout(function() {
+        flipped[0].setAttribute("style", "");
+        flipped[0].classList.remove("flipped");
+        flipped[0].setAttribute("style", "");
+        flipped[0].classList.remove("flipped");
+        numberOfCardsFlipped = 0;
+        cardLastClicked = 99;
+        lastDivClickedBackground = "";
+        divLastClicked = "";
+      }, 2000);
+    } else {
+      lastDivClickedBackground = imageBackground;
+      divLastClicked = divClicked;
+    }
+  }, 1000);
 }
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
