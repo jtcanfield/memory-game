@@ -3,6 +3,8 @@ and then program the JS to create an exact replica of my markup.*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
+let cardsfinished = 0;
+let cardsRequested = 50;
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
@@ -150,7 +152,7 @@ let holderLargeDivisions = `
       amountOfCards++;
     }
   }
-  createRandomizedBoxDivs(50);
+  createRandomizedBoxDivs(cardsRequested);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
@@ -177,8 +179,6 @@ let cardLastClicked = 99;
 let divLastClicked = "";
 let lastDivClickedBackground = "";
 function playerclick(divClicked, divNumber){
-  // let imageBackgroundOfLastObject = gameCardsObject.results[cardLastClicked].memePicture;
-  console.log(divNumber);
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
@@ -190,8 +190,8 @@ function playerclick(divClicked, divNumber){
   divClicked.setAttribute("class", "flipped");
   divClicked.style.transform = "rotateY(0deg)";
   numberOfCardsFlipped += 1;
-  console.log(divLastClicked);
   if (imageBackground === lastDivClickedBackground){
+    correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);
     flipped[0].classList.add("matched");
     flipped[0].setAttribute("onclick", "");
     flipped[0].classList.remove("flipped");
@@ -229,10 +229,23 @@ function incorrectAnimation(item1, item1Background, item2, item2Background){
   item1.setAttribute("style", "background-image: url("+item1Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000; transform: rotateY(0deg);");
   item2.setAttribute("style", "background-image: url("+item2Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000; transform: rotateY(0deg);");
 }
-function correctAnimation(item1, item2){
-
+function correctAnimation(item1, item1Background, item2, item2Background){
+  item1.setAttribute("style", "background-image: url("+item1Background+"); height: 190px;  width: 190px; border: 5px solid #00FF00; transform: rotateY(0deg);");
+  item2.setAttribute("style", "background-image: url("+item2Background+"); height: 190px;  width: 190px; border: 5px solid #00FF00; transform: rotateY(0deg);");
+  cardsfinished += 2;
+  if (cardsfinished === cardsRequested){
+    gameWin();
+  }
 }
 //END MATCHING ANIMATIONS
+//BEGIN END GAME
+function gameWin(){
+
+}
+function gameLoss(){
+
+}
+//END END GAME
 //BEGIN STANDALONE FADE FUNCTIONS
 function fadeOut(element, speed){
   element.style.opacity = 1;
