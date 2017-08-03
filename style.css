@@ -20,10 +20,15 @@ h1 {
   width: 200px;
   transition: all 0.4s;
   background-size: contain;
+  transform: rotateY(180deg);
 }
 #innerbox_div div:hover{
   background-color: #FF9F63;
   transform: scale(1.2);
+  transform: rotateY(180deg);
+}
+#innerbox_div div:active{
+  /*transform: rotateY(180deg);*/
 }
 #name_entry, #pre_game_body, #count_down_timer{
   height: 90%;

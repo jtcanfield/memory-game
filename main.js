@@ -188,6 +188,7 @@ function playerclick(divClicked, divNumber){
   let imageBackground = gameCardsObject.results[divNumber].memePicture;
   divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
   divClicked.setAttribute("class", "flipped");
+  divClicked.style.transform = "rotateY(0deg)";
   numberOfCardsFlipped += 1;
   console.log(divLastClicked);
   if (imageBackground === lastDivClickedBackground){
@@ -225,18 +226,8 @@ function playerclick(divClicked, divNumber){
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
 function incorrectAnimation(item1, item1Background, item2, item2Background){
-  item1.setAttribute("style", "background-image: url("+item1Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000;");
-  item2.setAttribute("style", "background-image: url("+item2Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000;");
-/*  item1
-  element.style.opacity = 1;
-  (function fade() {
-    if ((element.style.opacity -= speed) < 0) {
-      element.style.display = "none";
-      return "done"
-    } else {
-      requestAnimationFrame(fade);
-    }
-  })();*/
+  item1.setAttribute("style", "background-image: url("+item1Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000; transform: rotateY(0deg);");
+  item2.setAttribute("style", "background-image: url("+item2Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000; transform: rotateY(0deg);");
 }
 function correctAnimation(item1, item2){
 
