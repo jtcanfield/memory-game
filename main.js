@@ -5,7 +5,7 @@ scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
 let cardsRequested = 0; // default 50
-let timeSelected = 0; //default 300000
+let timeSelected = 300000; //default 300000
 let healthSelected = 0; //default 300000
 let timeSelectedCaluculated = 0;
 let gameCardsObject = {//opens parenting object
@@ -91,36 +91,36 @@ function createOptionsMenu(userName){
         <input type="range" id="healthSelection" step="2" min="40" max="70" value="50" onchange="updateHealth(this.value)" oninput="updateHealth(this.value)"></input><br>
         <p>Health: <span id="healthInput">50</span></p>
         <input type="range" id="timeSelection" step="15000" min="180000" max="375000" value="300000" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
-        <p>Health: <span id="timeInput">50</span></p>
+        <p>Time: <span id="timeInput">5 minutes and 0 seconds </span></p>
         <button onclick="nextSection()">Try it</button>
       </div>
     </div>
     `;
-    if (360000) {}
+    // if (360000) {}
   htmlBody.innerHTML = holder;
-  fadeIn(document.getElementById("pre_game_body"), .01);
-  //BEGIN OPTIONS DETECTION
-  function updateCards(val) {
-    document.getElementById('cardsInput').innerHTML=val;
-    cardsRequested = document.getElementById("cardSelection").value;
-  }
-  function updateHealth(val) {
-    document.getElementById('healthInput').innerHTML=val;
-  }
-  function updateTime(val) {
-    timeSelected = document.getElementById("timeSelection").value;
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    timeSelectedCaluculated = minutes + "minutes and " + seconds + "seconds ";
-    document.getElementById('timeInput').innerHTML=val;
-  }
-  //END OPTIONS DETECTION
-  function nextSection(){
-    fadeOut(document.getElementById("name_entry"), .01);
-    console.log(cardsRequested);
-    // setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 2000);
-  }
+  fadeIn(document.getElementById("pre_game_options_menu"), .01);
 }
+function nextSection(){
+  fadeOut(document.getElementById("name_entry"), .01);
+  console.log(cardsRequested);
+  setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 1500);
+}
+//BEGIN OPTIONS DETECTION
+function updateCards(val) {
+  document.getElementById('cardsInput').innerHTML=val;
+  cardsRequested = document.getElementById("cardSelection").value;
+}
+function updateHealth(val) {
+  document.getElementById('healthInput').innerHTML=val;
+}
+function updateTime(val) {
+  timeSelected = document.getElementById("timeSelection").value;
+  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
+  document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
+}
+//END OPTIONS DETECTION
 //END OPTIONS MENU
 
 //BEGIN INTRO

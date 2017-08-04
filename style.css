@@ -31,7 +31,7 @@ h1 {
 #innerbox_div div:active{
 
 }
-#name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu, #pre_game_inner_options_menu{
+#name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu{
   height: 90%;
   width: 98%;
   display: flex;
@@ -40,13 +40,13 @@ h1 {
   position: absolute;
   text-align: center;
 }
-#pre_game_inner_body{
-
-}
-#pre_game_body h2{
+#pre_game_inner_options_menu h2{
   -webkit-animation:zoom 2s infinite;
 }
-#CardSelection, #healthSelection, #timeSelection{
+#pre_game_inner_body h2{
+  -webkit-animation:zoom 2s infinite;
+}
+#cardSelection, #healthSelection, #timeSelection{
   width: 50%;
 }
 #name_entry_inner_box{
