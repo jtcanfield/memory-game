@@ -7,7 +7,8 @@ let cardsfinished = 0;
 let cardsRequested = 0; // default 50
 let timeSelected = 300000; //default 300000
 let healthSelected = 0; //default 300000
-let timeSelectedCaluculated = 0;
+let timeSelectedCaluculated = "5 minutes and 0 seconds ";
+let userName = "";
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
@@ -59,7 +60,7 @@ function askForName(){
 //BEGIN NAME CHECKER
 let noNameTries = 0;
 function checkName(){
-  let userName = document.getElementById("name_input_box").value;
+  userName = document.getElementById("name_input_box").value;
   let textFocus = document.getElementById("name_plate_announcement");
   let arrayOfText = ["Oh come on.... at least *try* to put a name in!", "Could ya please put your name in?", "Pretty pleeeeease??", "Okay, Fine!"]
   if (userName === "" && noNameTries <= 3){
@@ -81,7 +82,7 @@ function checkName(){
 
 //END NAME CHECKER
 //BEGIN OPTIONS MENU
-function createOptionsMenu(userName){
+function createOptionsMenu(){
     let holder = `
     <div id="pre_game_options_menu">
       <div id="pre_game_inner_options_menu">
@@ -92,18 +93,14 @@ function createOptionsMenu(userName){
         <p>Health: <span id="healthInput">50</span></p>
         <input type="range" id="timeSelection" step="15000" min="180000" max="375000" value="300000" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
         <p>Time: <span id="timeInput">5 minutes and 0 seconds </span></p>
-        <button onclick="nextSection()">Try it</button>
+        <button id="nextFunctionButton" onclick="nextSection()">Select</button>
       </div>
     </div>
     `;
     // if (360000) {}
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_options_menu"), .01);
-}
-function nextSection(){
-  fadeOut(document.getElementById("name_entry"), .01);
-  console.log(cardsRequested);
-  setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 1500);
+  // setTimeout(function() { (document.getElementById("nextFunctionButton")).setAttribute("onclick", "createPreGame()");}, 2000);
 }
 //BEGIN OPTIONS DETECTION
 function updateCards(val) {
@@ -121,6 +118,10 @@ function updateTime(val) {
   document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
 }
 //END OPTIONS DETECTION
+function nextSection(){
+  fadeOut(document.getElementById("pre_game_options_menu"), .01);
+  setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 1500);
+}
 //END OPTIONS MENU
 
 //BEGIN INTRO
