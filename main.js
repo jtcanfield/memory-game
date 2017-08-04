@@ -4,8 +4,9 @@ let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
-let cardsRequested = 0; // default 50
+let cardsRequested = 50; // default 50
 let timeSelected = 300000; //default 300000
+console.log(typeof timeSelected);
 let healthSelected = 0; //default 300000
 let timeSelectedCaluculated = "5 minutes and 0 seconds ";
 let userName = "";
@@ -111,7 +112,8 @@ function updateHealth(val) {
   document.getElementById('healthInput').innerHTML=val;
 }
 function updateTime(val) {
-  timeSelected = document.getElementById("timeSelection").value;
+  timeSelected = parseInt(document.getElementById("timeSelection").value);
+  console.log(typeof timeSelected);
   let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
   timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
@@ -208,8 +210,8 @@ let holderLargeDivisions = `
       amountOfCards++;
     }
   }
-  // createRandomizedBoxDivs(cardsRequested);
-  createRandomizedBoxDivs(50);
+  createRandomizedBoxDivs(cardsRequested);
+  // createRandomizedBoxDivs(50);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
