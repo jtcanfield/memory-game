@@ -345,7 +345,11 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 //BEGIN END GAME
 function gameWin(){
   let percentageofhealthleft = Math.round(100 - heartRemoved);
-  htmlItself.setAttribute("id", "party_gif");
+  var nodes = document.getElementById('innerbox_div').childNodes;
+  console.log(nodes[1]);
+  for(var i=1; i<nodes.length; i++) {
+    nodes[i].classList.add('winning_div_actions');
+  }
   let holder = `
   <div onselectstart="return false" id="victory_page">
     <div id="victory_page_inner_body">
@@ -356,9 +360,8 @@ function gameWin(){
     </div>
   </div>
   `;
-  htmlBody.innerHTML = holder;
   clearInterval(x);
-  (document.getElementById("name_input_box")).setAttribute("onclick", " ");
+  setTimeout(function() {  htmlItself.setAttribute("id", "party_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
 function gameLoss(){
 
