@@ -4,7 +4,7 @@ let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
-let cardsRequested = 50;
+let cardsRequested = 0;
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
@@ -30,8 +30,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-// askForName();
-createGameBoard();
+askForName();
+// createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -83,15 +83,25 @@ function createPreGame(userName){
     <div id="pre_game_body">
       <h2>Welcome ${userName}!</h2>
       <p>You have five minutes to match all of the memes. When you are ready, click anywhere to start!</p>
+      <input type="range" id="CardSelection" value="50"></input>
+      <button onclick="detectAmount()">Try it</button>
     </div>
     `;
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_body"), .01);
-  setTimeout(function() { (document.getElementById("pre_game_body")).setAttribute("onclick", "startCountDown()");}, 2000);
 }
 //END INTRO
+//BEGIN CARD AMOUNT CHOICE
+function detectAmount(){
+  
+  cardsRequested = document.getElementById("CardSelection").value;
+  console.log(cardsRequested);
+  // setTimeout(function() { (document.getElementById("pre_game_body")).setAttribute("onclick", "startCountDown()");}, 2000);
+}
+//END CARD AMOUNT CHOICE
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
+  console.log(cardsRequested);
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
     let holder = `
@@ -155,7 +165,8 @@ let holderLargeDivisions = `
       amountOfCards++;
     }
   }
-  createRandomizedBoxDivs(cardsRequested);
+  // createRandomizedBoxDivs(cardsRequested);
+  createRandomizedBoxDivs(50);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
@@ -182,6 +193,7 @@ let cardLastClicked = 99;
 let divLastClicked = "";
 let lastDivClickedBackground = "";
 function playerclick(divClicked, divNumber){
+  console.log(divClicked);
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }

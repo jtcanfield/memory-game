@@ -38,17 +38,26 @@ h1 {
   justify-content: center;
   flex-direction: column;
   position: absolute;
+
 }
 #pre_game_body h2{
   -webkit-animation:zoom 2s infinite;
+}
+#pre_game_body input{
+  
 }
 #name_entry_inner_box{
   z-index: 10;
   -webkit-animation:rotate 3s infinite;
   display: inline;
+  -webkit-perspective: 1000px;
 }
 
 @-webkit-keyframes rotate {
+  0%, 100% {transform: rotateZ(1deg);}
+  50%      {transform: rotateZ(-2deg);}
+}
+@-webkit-keyframes rotateKRAZY {
   0%, 100% {transform: rotateZ(1deg);}
   50%      {transform: rotateZ(-2deg);}
 }
