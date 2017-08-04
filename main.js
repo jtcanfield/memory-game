@@ -3,12 +3,14 @@ and then program the JS to create an exact replica of my markup.*/
 /* TODO
 ADD WIN/LOSS CONDITIONS
 ADD ANIMATIONS WITH USER NAME
+ADD ANIMATIONS ON GAME AND OR PAGE LOAD
 ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
 IMPLEMENT MEDIA QUERIES SO IT WORKS WELL ON MOBILE AND TABLET
 */
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
+let htmlItself = document.querySelector("html");
 let cardsfinished = 0;
 let cardsRequested = 50; // default 50
 let timeSelected = 300000; //default 300000
@@ -343,6 +345,7 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 //BEGIN END GAME
 function gameWin(){
   let percentageofhealthleft = Math.round(100 - heartRemoved);
+  htmlItself.setAttribute("id", "party_gif");
   let holder = `
   <div onselectstart="return false" id="victory_page">
     <div id="victory_page_inner_body">

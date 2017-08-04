@@ -36,6 +36,9 @@ h1 {
   position: absolute;
   text-align: center;
 }
+#party_gif{
+  background-image: url(img/winningbackground.gif);
+}
 #victory_page{
   -webkit-animation:popper 1s 1;
 }
