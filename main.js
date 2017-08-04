@@ -4,7 +4,9 @@ let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
-let cardsRequested = 0;
+let cardsRequested = 0; // default 50
+let timeSelected = 0; //default 300000
+let healthSelected = 0; //default 300000
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
@@ -49,7 +51,6 @@ function askForName(){
     `;
   htmlBody.innerHTML = holder;
   let textFocus = document.getElementById("name_input_box");
-  // seesaw(document.getElementById("name_entry"), 0.05);
   textFocus.focus();
   textFocus.select();
 }
@@ -74,23 +75,32 @@ function checkName(){
   if (userName === ""){ userName = "Unnamed Victim";}
   (document.getElementById("name_entry")).setAttribute("onclick", " ");
   fadeOut(document.getElementById("name_entry"), .01);
-  setTimeout(function() { createPreGame(userName);}, 2000);
+  setTimeout(function() { createOptionsMenu(userName);}, 2000);
 }
+
 //END NAME CHECKER
-//BEGIN INTRO
-function createPreGame(userName){
+//BEGIN OPTIONS MENU
+function createOptionsMenu(userName){
     let holder = `
     <div id="pre_game_body">
-      <h2>Welcome ${userName}!</h2>
-      <p>You have five minutes to match all of the memes. When you are ready, click anywhere to start!</p>
-      <input type="range" id="CardSelection" step="2" min="2" max="50" value="10"></input>
-      <button onclick="detectAmount()">Try it</button>
+      <div id="pre_game_inner_body">
+        <h2>Select your options, ${userName}.</h2>
+        <input type="range" id="CardSelection" step="2" min="40" max="70" value="50" onchange="updateCards(this.value)" oninput="updateCards(this.value)"></input><br>
+        <p>Number of Cards: <span id="cardsInput">50</span></p>
+        <input type="range" id="healthSelection" step="2" min="40" max="70" value="50" onchange="updateHealth(this.value)" oninput="updateHealth(this.value)"></input><br>
+        <p>Health: <span id="healthInput">50</span></p>
+        <input type="range" id="timeSelection" step="2" min="40" max="70" value="50" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
+        <p>Health: <span id="timeInput">50</span></p>
+        <button onclick="detectAmount()">Try it</button>
+      </div>
     </div>
     `;
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_body"), .01);
+  timeSelected
+  timeSelectedCaluculated
+  // setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 2000);
 }
-//END INTRO
 //BEGIN CARD AMOUNT CHOICE
 function detectAmount(){
   //Add Time Change
@@ -98,12 +108,37 @@ function detectAmount(){
 
   cardsRequested = document.getElementById("CardSelection").value;
   console.log(cardsRequested);
-  // setTimeout(function() { (document.getElementById("pre_game_body")).setAttribute("onclick", "startCountDown()");}, 2000);
+}
+function updateCards(val) {
+  document.getElementById('cardsInput').innerHTML=val;
+}
+function updateHealth(val) {
+  document.getElementById('healthInput').innerHTML=val;
 }
 //END CARD AMOUNT CHOICE
+//OPTIONS MENU
+
+//BEGIN INTRO
+function createPreGame(userName, time){
+    let holder = `
+    <div id="pre_game_body">
+      <div id="pre_game_inner_body">
+        <h2>Welcome ${userName}!</h2>
+        <p>You have ${time} to match all of the memes. When you are ready, click anywhere to start!</p>
+      </div>
+    </div>
+    `;
+  htmlBody.innerHTML = holder;
+  fadeIn(document.getElementById("pre_game_body"), .01);
+  setTimeout(function() { (document.getElementById("pre_game_body")).setAttribute("onclick", "startCountDown()");}, 2000);
+}
+//END INTRO
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
   console.log(cardsRequested);
+  timeSelected
+  timeSelectedCaluculated
+  console.log(healthSelected);
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
     let holder = `
@@ -174,7 +209,7 @@ let holderLargeDivisions = `
 //BEGIN CREATE TIMER AND COUNTDOWN
 function timerBeginCount(){
 let countDownDate = new Date().getTime();
-countDownDate = countDownDate + 300000;
+countDownDate = countDownDate + timeSelected;
   var x = setInterval(function() {
     let now = new Date().getTime();
     let distance = countDownDate - now;
@@ -309,30 +344,3 @@ function fadeIn(element, speed){
   })();
 }
 //END STANDALONE FADE FUNCTIONS
-//BEGIN BOUNCE FUNCTIONS
-/*
-function seesaw(element, speed){
-  let deg = 0;
-  (function fade() {
-    if ((element.style.transform = 'rotate('+deg+'deg)') >= 2) {
-      deg += speed;
-      requestAnimationFrame(fade);
-    } else {
-      deg += speed;
-      requestAnimationFrame(fade);
-    }
-  })();
-}*/
-//END BOUNCE FUNCTIONS
-
-/*
-Addd a listener to all options
-if one is clicked, keep it displayed
-if two is clicked, compare and see if they match
-if they do not match, make them hidden
-if they do match, keep them up
-
-while (game running){
-code will do this
-}
-*/

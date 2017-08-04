@@ -38,13 +38,16 @@ h1 {
   justify-content: center;
   flex-direction: column;
   position: absolute;
+  text-align: center;
+}
+#pre_game_inner_body{
 
 }
 #pre_game_body h2{
   -webkit-animation:zoom 2s infinite;
 }
-#pre_game_body input{
-  
+#CardSelection, #healthSelection, #timeSelection{
+  width: 50%;
 }
 #name_entry_inner_box{
   z-index: 10;
