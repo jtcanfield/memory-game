@@ -117,11 +117,11 @@ function updateCards(val) {
 function updateHealth(val) {
   if (val > 70) {
     healthSelected = 0;
+    document.getElementById('healthInput').innerHTML="Unlimited";
   } else {
     document.getElementById('healthInput').innerHTML=val;
     healthValuetoNumber = parseInt(val);
     healthSelected = 100/healthValuetoNumber;
-    console.log(healthSelected);
   }
 }
 function updateTime(val) {
@@ -162,7 +162,6 @@ function createPreGame(userName, time){
 //END INTRO
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
-  console.log(healthSelected);
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
     let holder = `
@@ -265,7 +264,6 @@ function playerclick(divClicked, divNumber){
   divClicked.setAttribute("style", "background-image: url("+emptyString+");");
   let rotatedegre = -180;
   function rotateImage(){
-    console.log("function is in action");
     if (rotatedegre == -90){
       divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
     } if (rotatedegre === 0){
