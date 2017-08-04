@@ -34,8 +34,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-// askForName();
-createGameBoard();
+askForName();
+// createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -119,6 +119,7 @@ function updateTime(val) {
 }
 //END OPTIONS DETECTION
 function nextSection(){
+  (document.getElementById("nextFunctionButton")).setAttribute("onclick", " ");
   fadeOut(document.getElementById("pre_game_options_menu"), .01);
   setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 1500);
 }
