@@ -89,12 +89,13 @@ function createOptionsMenu(userName){
         <p>Number of Cards: <span id="cardsInput">50</span></p>
         <input type="range" id="healthSelection" step="2" min="40" max="70" value="50" onchange="updateHealth(this.value)" oninput="updateHealth(this.value)"></input><br>
         <p>Health: <span id="healthInput">50</span></p>
-        <input type="range" id="timeSelection" step="2" min="40" max="70" value="50" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
+        <input type="range" id="timeSelection" step="15000" min="180000" max="375000" value="300000" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
         <p>Health: <span id="timeInput">50</span></p>
         <button onclick="detectAmount()">Try it</button>
       </div>
     </div>
     `;
+    if (360000) {}
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_body"), .01);
   timeSelected
@@ -136,8 +137,8 @@ function createPreGame(userName, time){
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
   console.log(cardsRequested);
-  timeSelected
-  timeSelectedCaluculated
+  console.log(timeSelected);
+  console.log(timeSelectedCaluculated);
   console.log(healthSelected);
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
