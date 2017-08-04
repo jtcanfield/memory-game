@@ -265,7 +265,7 @@ let lastDivClickedBackground = "";
 let flippedGroup = [];
 function playerclick(divClicked, divNumber){
   if (true === true){
-      gameWin();
+      gameLoss("doomsday");
   } else if (false === true) {//BRACKET TO BREAK CLICK
 
 

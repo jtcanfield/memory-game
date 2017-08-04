@@ -30,7 +30,7 @@ h1 {
 .losing_div_actions{
   -webkit-animation:losing 5s 1;
 }
-#name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu, #victory_page{
+#name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu, #victory_page, #loss_page{
   height: 90%;
   width: 98%;
   display: flex;
@@ -78,7 +78,7 @@ h1 {
 @-webkit-keyframes losing {
   0%        {transform: rotate(0deg);}
   20%       {transform: rotate(30deg);}
-  100%      {transform: translate(0px, 1000px);}
+  100%      {transform: translate(0px, 5000px);}
 }
 @-webkit-keyframes popper {
   0%       {transform: scale(0);}
