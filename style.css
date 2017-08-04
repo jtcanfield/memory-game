@@ -27,7 +27,7 @@ h1 {
 #innerbox_div div:active{
 
 }
-#name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu{
+#name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu, #victory_page{
   height: 90%;
   width: 98%;
   display: flex;

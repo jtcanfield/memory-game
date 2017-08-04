@@ -16,6 +16,7 @@ let healthSelected = 3.125; //default 3.125
 let timeSelectedCaluculated = "5 minutes and 0 seconds ";
 let userName = "";
 let heartRemoved = 0;
+let finalTime = "";
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
@@ -237,7 +238,7 @@ countDownDate = countDownDate + timeSelected;
     timeTaken += 1000;
     let mins = Math.floor((timeTaken % (1000 * 60 * 60)) / (1000 * 60));
     let secs = Math.floor((timeTaken % (1000 * 60)) / 1000);
-    var finalTime = mins + "m " + secs + "s ";
+    finalTime = mins + "m " + secs + "s ";
     let now = new Date().getTime();
     let distance = countDownDate - now;
     if (timeSelected > 0){
@@ -260,6 +261,7 @@ let divLastClicked = "";
 let lastDivClickedBackground = "";
 let flippedGroup = [];
 function playerclick(divClicked, divNumber){
+  console.log(Math.round(100 - heartRemoved));
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
@@ -333,17 +335,20 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 //END MATCHING ANIMATIONS
 //BEGIN END GAME
 function gameWin(){
+  let percentageofhealthleft = Math.round(100 - heartRemoved);
   let holder = `
   <div onselectstart="return false" id="victory_page">
-    <div id="pre_game_inner_body">
-      <h2>Congrats, ${userName}!</h2>
-      <p>You have won the game!<p>
-      <p>You matched all ${cardsRequested} cards in ${finalTime}!<p>
+    <div id="victory_page_inner_body">
+      <h1>Congrats, ${userName}!</h1>
+      <h2>You have won the game!<h2>
+      <p>You matched all ${cardsRequested} cards in ${finalTime} with ${percentageofhealthleft}% health remaining!<p>
+      <a id="name_input_box" href="https://jtcanfield.github.io/memory-game/">Click to play again!</a>
     </div>
   </div>
   `;
   htmlBody.innerHTML = holder;
   clearInterval(x);
+  (document.getElementById("name_input_box")).setAttribute("onclick", " ");
 }
 function gameLoss(){
 
