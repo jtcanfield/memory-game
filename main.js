@@ -45,8 +45,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-// askForName();
-createGameBoard();
+askForName();
+// createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -264,12 +264,6 @@ let divLastClicked = "";
 let lastDivClickedBackground = "";
 let flippedGroup = [];
 function playerclick(divClicked, divNumber){
-  if (true === true){
-      gameLoss("doomsday");
-  } else if (false === true) {//BRACKET TO BREAK CLICK
-
-
-  console.log(Math.round(100 - heartRemoved));
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
@@ -327,7 +321,6 @@ function playerclick(divClicked, divNumber){
       lastDivClickedBackground = imageBackground;
       divLastClicked = divClicked;
     }
-  }//BRACKET TO BREAK CLICK
 }
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
