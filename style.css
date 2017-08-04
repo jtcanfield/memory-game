@@ -52,7 +52,6 @@ h1 {
   z-index: 10;
   -webkit-animation:rotate 3s infinite;
   display: inline;
-  -webkit-perspective: 1000px;
 }
 @-webkit-keyframes rotate {
   0%, 100% {transform: rotateZ(1deg);}

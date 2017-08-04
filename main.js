@@ -349,7 +349,7 @@ function gameWin(){
       <h1>Congrats, ${userName}!</h1>
       <h2>You have won the game!<h2>
       <p>You matched all ${cardsRequested} cards in ${finalTime} with ${percentageofhealthleft}% health remaining!<p>
-      <a id="name_input_box" href="https://jtcanfield.github.io/memory-game/">Click to play again!</a>
+      <a id="name_input_box" href="https://jtcanfield.github.io/memory-game/">Click here to play again!</a>
     </div>
   </div>
   `;
