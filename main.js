@@ -35,8 +35,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-askForName();
-// createGameBoard();
+// askForName();
+createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -264,9 +264,8 @@ function playerclick(divClicked, divNumber){
   var refreshId = setInterval(rotateImage, 2);
   numberOfCardsFlipped += 1;
   console.log(flipped[0].classList);
-  // setTimeout(function() {
     if (imageBackground === lastDivClickedBackground){
-      setTimeout(function() {correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);}, 2000);
+      setTimeout(function() {correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);}, 1000);
       flipped[0].classList.add("matched");
       flipped[0].setAttribute("onclick", "");
       flipped[0].classList.remove("flipped");
@@ -278,7 +277,7 @@ function playerclick(divClicked, divNumber){
         cardLastClicked = 99;
         lastDivClickedBackground = "";
         divLastClicked = "";
-      }, 4000);
+      }, 3000);
       return
     }
     if (numberOfCardsFlipped >= 2){
@@ -286,7 +285,7 @@ function playerclick(divClicked, divNumber){
       heartRemoved += 3.125;
       healthRemover.style.width = heartRemoved+"%";
 
-      setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 2000);
+      setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 1000);
 
       setTimeout(function() {
         flipped[0].setAttribute("style", "");
@@ -297,12 +296,11 @@ function playerclick(divClicked, divNumber){
         cardLastClicked = 99;
         lastDivClickedBackground = "";
         divLastClicked = "";
-      }, 4000);
+      }, 3000);
     } else {
       lastDivClickedBackground = imageBackground;
       divLastClicked = divClicked;
     }
-  // }, 1000);
 }
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
