@@ -6,7 +6,6 @@ let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
 let cardsRequested = 50; // default 50
 let timeSelected = 300000; //default 300000
-console.log(typeof timeSelected);
 let healthSelected = 0; //default 300000
 let timeSelectedCaluculated = "5 minutes and 0 seconds ";
 let userName = "";
@@ -113,7 +112,6 @@ function updateHealth(val) {
 }
 function updateTime(val) {
   timeSelected = parseInt(document.getElementById("timeSelection").value);
-  console.log(typeof timeSelected);
   let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
   timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
@@ -143,9 +141,6 @@ function createPreGame(userName, time){
 //END INTRO
 //BEGIN COUNTDOWN TO START
 function startCountDown(){
-  console.log(cardsRequested);
-  console.log(timeSelected);
-  console.log(timeSelectedCaluculated);
   console.log(healthSelected);
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
@@ -237,16 +232,15 @@ let numberOfCardsFlipped = 0;
 let cardLastClicked = 99;
 let divLastClicked = "";
 let lastDivClickedBackground = "";
+let flippedGroup = [];
 function playerclick(divClicked, divNumber){
-  console.log(divClicked);
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
   cardLastClicked = divNumber;
-  let flipped = document.getElementsByClassName("flipped");
   let lengthOfBoard = document.getElementById("innerbox_div").children.length;
   let imageBackground = gameCardsObject.results[divNumber].memePicture;
-  divClicked.setAttribute("class", "flipped");
+  flippedGroup.push(divClicked);
   let emptyString = "";
   divClicked.setAttribute("style", "background-image: url("+emptyString+");");
   let rotatedegre = -180;
@@ -263,20 +257,16 @@ function playerclick(divClicked, divNumber){
   }
   var refreshId = setInterval(rotateImage, 2);
   numberOfCardsFlipped += 1;
-  console.log(flipped[0].classList);
     if (imageBackground === lastDivClickedBackground){
       setTimeout(function() {correctAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground);}, 1000);
-      flipped[0].classList.add("matched");
-      flipped[0].setAttribute("onclick", "");
-      flipped[0].classList.remove("flipped");
-      flipped[0].classList.add("matched");
-      flipped[0].setAttribute("onclick", "");
-      flipped[0].classList.remove("flipped");
+      flippedGroup[0].setAttribute("onclick", "");
+      flippedGroup[1].setAttribute("onclick", "");
       setTimeout(function() {
         numberOfCardsFlipped = 0;
         cardLastClicked = 99;
         lastDivClickedBackground = "";
         divLastClicked = "";
+        flippedGroup = [];
       }, 3000);
       return
     }
@@ -288,14 +278,13 @@ function playerclick(divClicked, divNumber){
       setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 1000);
 
       setTimeout(function() {
-        flipped[0].setAttribute("style", "");
-        flipped[0].classList.remove("flipped");
-        flipped[0].setAttribute("style", "");
-        flipped[0].classList.remove("flipped");
+        flippedGroup[0].setAttribute("style", "");
+        flippedGroup[1].setAttribute("style", "");
         numberOfCardsFlipped = 0;
         cardLastClicked = 99;
         lastDivClickedBackground = "";
         divLastClicked = "";
+        flippedGroup = [];
       }, 3000);
     } else {
       lastDivClickedBackground = imageBackground;
