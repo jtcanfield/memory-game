@@ -24,8 +24,8 @@ h1 {
   transform: rotateY(-180deg);
   /*transform: scaleX(-1);*/
 }
-#innerbox_div div:active{
-
+.winning_div_actions{
+  -webkit-animation:winning 5s 1;
 }
 #name_entry, #pre_game_body, #count_down_timer, #pre_game_options_menu, #victory_page{
   height: 90%;
@@ -60,13 +60,22 @@ h1 {
   0%, 100% {transform: rotateZ(1deg);}
   50%      {transform: rotateZ(-2deg);}
 }
-@-webkit-keyframes rotateKRAZY {
-  0%, 100% {transform: rotateZ(1deg);}
-  50%      {transform: rotateZ(-2deg);}
-}
 @-webkit-keyframes zoom {
   0%, 100% {transform: scale(1);}
   50%      {transform: scale(1.1);}
+}
+@-webkit-keyframes winning {
+  0%        {transform: scale(1);}
+  10%       {transform: scale(1.2);}
+  20%       {transform: scale(1);}
+  30%       {transform: rotate(0deg);}
+  40%       {transform: rotate(90deg);}
+  50%       {transform: rotate(180deg);}
+  60%       {transform: rotate(360deg);}
+  70%       {transform: rotate(520deg);}
+  80%       {transform: rotate(1040deg);}
+  90%       {transform: rotate(1500deg);}
+  100%      {transform: rotate(2000deg);}
 }
 @-webkit-keyframes popper {
   0%       {transform: scale(0);}
