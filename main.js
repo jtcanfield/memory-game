@@ -83,7 +83,7 @@ function createPreGame(userName){
     <div id="pre_game_body">
       <h2>Welcome ${userName}!</h2>
       <p>You have five minutes to match all of the memes. When you are ready, click anywhere to start!</p>
-      <input type="range" id="CardSelection" value="50"></input>
+      <input type="range" id="CardSelection" step="2" min="2" max="50" value="10"></input>
       <button onclick="detectAmount()">Try it</button>
     </div>
     `;
@@ -93,7 +93,9 @@ function createPreGame(userName){
 //END INTRO
 //BEGIN CARD AMOUNT CHOICE
 function detectAmount(){
-  
+  //Add Time Change
+  //Add Health Change
+
   cardsRequested = document.getElementById("CardSelection").value;
   console.log(cardsRequested);
   // setTimeout(function() { (document.getElementById("pre_game_body")).setAttribute("onclick", "startCountDown()");}, 2000);
