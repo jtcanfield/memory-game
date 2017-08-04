@@ -346,7 +346,6 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 function gameWin(){
   let percentageofhealthleft = Math.round(100 - heartRemoved);
   var nodes = document.getElementById('innerbox_div').childNodes;
-  console.log(nodes[1]);
   for(var i=1; i<nodes.length; i++) {
     nodes[i].classList.add('winning_div_actions');
   }
