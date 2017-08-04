@@ -1,10 +1,9 @@
 /*It helped me to build the markup that I wanted using only html and css,
 and then program the JS to create an exact replica of my markup.*/
-
-
 /* TODO
-FINISH HEALTH BAR AND USER SELECTION
+ADD ANIMATIONS WITH USER NAME
 SET UNLIMITED TIME POSSIBLE
+MAKE TEXT NONSELECTABLE
 ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
 IMPLEMENT MEDIA QUERIES SO IT WORKS WELL ON MOBILE AND TABLET
 */
@@ -14,10 +13,9 @@ let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
 let cardsRequested = 50; // default 50
 let timeSelected = 300000; //default 300000
-let healthSelected = 32; //default 32
+let healthSelected = 3.125; //default 3.125
 let timeSelectedCaluculated = "5 minutes and 0 seconds ";
 let userName = "";
-let
 let heartRemoved = 0;
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
@@ -119,9 +117,9 @@ function updateCards(val) {
 function updateHealth(val) {
   // if (> 70) {}
   document.getElementById('healthInput').innerHTML=val;
-  document.getElementById('healthInput').innerHTML=val;
-  healthValuetoNumber = parseInt(document.getElementById('healthInput').value);
-  healthSelected = (100/healthValuetoNumber);
+  healthValuetoNumber = parseInt(val);
+  healthSelected = 100/healthValuetoNumber;
+  console.log(healthSelected);
 }
 function updateTime(val) {
   // if (> 360000) {}
@@ -285,8 +283,8 @@ function playerclick(divClicked, divNumber){
       return
     }
     if (numberOfCardsFlipped >= 2){
-      heartRemoved += 3.125;
       let healthRemover = document.getElementById("health_remover");
+      heartRemoved += healthSelected;
       healthRemover.style.width = heartRemoved+"%";
 
       setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 1000);
