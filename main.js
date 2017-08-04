@@ -1,7 +1,6 @@
 /*It helped me to build the markup that I wanted using only html and css,
 and then program the JS to create an exact replica of my markup.*/
 /* TODO
-ADD WIN/LOSS CONDITIONS
 ADD ANIMATIONS WITH USER NAME
 ADD ANIMATIONS ON GAME AND OR PAGE LOAD
 ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
@@ -110,7 +109,6 @@ function createOptionsMenu(){
     `;
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_options_menu"), .01);
-  // setTimeout(function() { (document.getElementById("nextFunctionButton")).setAttribute("onclick", "createPreGame()");}, 2000);
 }
 //BEGIN OPTIONS DETECTION
 function updateCards(val) {
@@ -147,7 +145,6 @@ function nextSection(){
   setTimeout(function() { createPreGame(userName, timeSelectedCaluculated);}, 1500);
 }
 //END OPTIONS MENU
-
 //BEGIN INTRO
 function createPreGame(userName, time){
     let holder = `
