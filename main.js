@@ -115,19 +115,27 @@ function updateCards(val) {
   cardsRequested = document.getElementById("cardSelection").value;
 }
 function updateHealth(val) {
-  // if (> 70) {}
-  document.getElementById('healthInput').innerHTML=val;
-  healthValuetoNumber = parseInt(val);
-  healthSelected = 100/healthValuetoNumber;
-  console.log(healthSelected);
+  if (val > 70) {
+    healthSelected = 0;
+  } else {
+    document.getElementById('healthInput').innerHTML=val;
+    healthValuetoNumber = parseInt(val);
+    healthSelected = 100/healthValuetoNumber;
+    console.log(healthSelected);
+  }
 }
 function updateTime(val) {
-  // if (> 360000) {}
-  timeSelected = parseInt(document.getElementById("timeSelection").value);
-  let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
-  timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
-  document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
+  if (val > 360000) {
+    timeSelected = 0;
+    timeSelectedCaluculated = "Unlimited";
+    document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
+  } else {
+    timeSelected = parseInt(document.getElementById("timeSelection").value);
+    let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
+    timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
+    document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
+  }
 }
 //END OPTIONS DETECTION
 function nextSection(){
@@ -188,7 +196,7 @@ let holderLargeDivisions = `
     </div>
     `;
   htmlBody.innerHTML = holderLargeDivisions;
-  timerBeginCount();
+  if (timeSelected > 0){ timerBeginCount(); };
   function createRandomizedBoxDivs(maxCards){
     let imagesNeeded = maxCards/2;
     let amountOfCards = 0;
