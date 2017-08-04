@@ -47,7 +47,7 @@ askForName();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
-    <div id="name_entry" onclick="checkName()">
+    <div onselectstart="return false" id="name_entry" onclick="checkName()">
       <div id="name_entry_inner_box">
         <h2>Whats your name?</h2>
         <br>
@@ -92,7 +92,7 @@ function checkName(){
 //BEGIN OPTIONS MENU
 function createOptionsMenu(){
     let holder = `
-    <div id="pre_game_options_menu">
+    <div onselectstart="return false" id="pre_game_options_menu">
       <div id="pre_game_inner_options_menu">
         <h2>Select your options, ${userName}.</h2>
         <input type="range" id="cardSelection" step="2" min="40" max="70" value="50" onchange="updateCards(this.value)" oninput="updateCards(this.value)"></input><br>
@@ -140,7 +140,7 @@ function nextSection(){
 //BEGIN INTRO
 function createPreGame(userName, time){
     let holder = `
-    <div id="pre_game_body">
+    <div onselectstart="return false" id="pre_game_body">
       <div id="pre_game_inner_body">
         <h2>Welcome ${userName}!</h2>
         <p>You have ${time} to match all of the memes. When you are ready, click anywhere to start!</p>
@@ -158,7 +158,7 @@ function startCountDown(){
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
     let holder = `
-    <div id="count_down_timer">
+    <div onselectstart="return false" id="count_down_timer">
     <h1>${second}</h1>
     </div>
     `;
@@ -176,7 +176,7 @@ function startCountDown(){
 //BEGIN CREATE GAME BOARD
 function createGameBoard(){
 let holderLargeDivisions = `
-    <div id="game_body">
+    <div onselectstart="return false" id="game_body">
       <h1>The Annoying Memory Game</h1>
         <div id="clockdiv"></div>
         <p>Health</p>

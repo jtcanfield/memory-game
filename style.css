@@ -2,11 +2,6 @@ html {
   text-align: center;
   background-color: #FF4F3F;
   font-family: 'Shrikhand', cursive;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
 }
 h1 {
   font-size: 70px;
