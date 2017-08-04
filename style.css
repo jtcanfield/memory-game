@@ -75,6 +75,11 @@ h1 {
   98%       {transform: rotate(2000deg) translate(1000px, 0px);}
   100%      {transform: rotate(2000deg) translate(1000px, 0px);}
 }
+@-webkit-keyframes losing {
+  0%        {transform: rotate(0deg);}
+  20%       {transform: rotate(30deg);}
+  100%      {transform: translate(0px, 1000px);}
+}
 @-webkit-keyframes popper {
   0%       {transform: scale(0);}
   80%      {transform: scale(1.3);}
