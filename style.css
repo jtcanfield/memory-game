@@ -59,7 +59,6 @@ h1 {
 #health_bar{
   display: block;
   background-color: #FFFFFF;
-  /*color: #FFFFFF;*/
   height: 10px;
   margin: 0px;
   padding: 0px;
@@ -74,7 +73,7 @@ h1 {
 #health_remover{
   display: block;
   background-color: #FF4F3F;
-  width: 15.625%;
+  width: 0%;
   float: right;
   height: 100%;
 }
