@@ -1,14 +1,24 @@
 /*It helped me to build the markup that I wanted using only html and css,
 and then program the JS to create an exact replica of my markup.*/
+
+
+/* TODO
+FINISH HEALTH BAR AND USER SELECTION
+SET UNLIMITED TIME POSSIBLE
+ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
+IMPLEMENT MEDIA QUERIES SO IT WORKS WELL ON MOBILE AND TABLET
+*/
 let scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
 let htmlBody = document.querySelector("body");
 let cardsfinished = 0;
 let cardsRequested = 50; // default 50
 let timeSelected = 300000; //default 300000
-let healthSelected = 0; //default 300000
+let healthSelected = 32; //default 32
 let timeSelectedCaluculated = "5 minutes and 0 seconds ";
 let userName = "";
+let
+let heartRemoved = 0;
 let gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
@@ -89,15 +99,14 @@ function createOptionsMenu(){
         <h2>Select your options, ${userName}.</h2>
         <input type="range" id="cardSelection" step="2" min="40" max="70" value="50" onchange="updateCards(this.value)" oninput="updateCards(this.value)"></input><br>
         <p>Number of Cards: <span id="cardsInput">50</span></p>
-        <input type="range" id="healthSelection" step="2" min="40" max="70" value="50" onchange="updateHealth(this.value)" oninput="updateHealth(this.value)"></input><br>
-        <p>Health: <span id="healthInput">50</span></p>
+        <input type="range" id="healthSelection" step="1" min="10" max="71" value="32" onchange="updateHealth(this.value)" oninput="updateHealth(this.value)"></input><br>
+        <p>Health(number of mismatches allowed): <span id="healthInput">32</span></p>
         <input type="range" id="timeSelection" step="15000" min="180000" max="375000" value="300000" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
         <p>Time: <span id="timeInput">5 minutes and 0 seconds </span></p>
         <button id="nextFunctionButton" onclick="nextSection()">Select</button>
       </div>
     </div>
     `;
-    // if (360000) {}
   htmlBody.innerHTML = holder;
   fadeIn(document.getElementById("pre_game_options_menu"), .01);
   // setTimeout(function() { (document.getElementById("nextFunctionButton")).setAttribute("onclick", "createPreGame()");}, 2000);
@@ -108,9 +117,14 @@ function updateCards(val) {
   cardsRequested = document.getElementById("cardSelection").value;
 }
 function updateHealth(val) {
+  // if (> 70) {}
   document.getElementById('healthInput').innerHTML=val;
+  document.getElementById('healthInput').innerHTML=val;
+  healthValuetoNumber = parseInt(document.getElementById('healthInput').value);
+  healthSelected = (100/healthValuetoNumber);
 }
 function updateTime(val) {
+  // if (> 360000) {}
   timeSelected = parseInt(document.getElementById("timeSelection").value);
   let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
   let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
@@ -228,7 +242,6 @@ countDownDate = countDownDate + timeSelected;
 };
 //END CREATE TIMER AND COUNTDOWN
 //BEGIN CLICK FUNCTION
-let heartRemoved = 0;
 let numberOfCardsFlipped = 0;
 let cardLastClicked = 99;
 let divLastClicked = "";
@@ -272,8 +285,8 @@ function playerclick(divClicked, divNumber){
       return
     }
     if (numberOfCardsFlipped >= 2){
-      let healthRemover = document.getElementById("health_remover");
       heartRemoved += 3.125;
+      let healthRemover = document.getElementById("health_remover");
       healthRemover.style.width = heartRemoved+"%";
 
       setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 1000);
