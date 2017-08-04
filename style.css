@@ -2,6 +2,11 @@ html {
   text-align: center;
   background-color: #FF4F3F;
   font-family: 'Shrikhand', cursive;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
 h1 {
   font-size: 70px;
@@ -23,11 +28,6 @@ h1 {
   transform: rotateY(-180deg);
   /*transform: scaleX(-1);*/
 }
-/*#innerbox_div div:hover{
-  background-color: #FF9F63;
-  transform: scale(1.2);
-  /*transform: rotateY(-180deg);*/
-/*}*/
 #innerbox_div div:active{
 
 }
