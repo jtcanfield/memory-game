@@ -194,7 +194,7 @@ let holderLargeDivisions = `
     </div>
     `;
   htmlBody.innerHTML = holderLargeDivisions;
-  if (timeSelected > 0){ timerBeginCount(); };
+  timerBeginCount();
   function createRandomizedBoxDivs(maxCards){
     let imagesNeeded = maxCards/2;
     let amountOfCards = 0;
@@ -234,23 +234,26 @@ let timeTaken = 0;
 let countDownDate = new Date().getTime();
 countDownDate = countDownDate + timeSelected;
   var x = setInterval(function() {
-    let now = new Date().getTime();
-    let distance = countDownDate - now;
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("clockdiv").innerHTML = minutes + "m " + seconds + "s ";
-    if (distance < 0) {
-      clearInterval(x);
-      document.getElementById("clockdiv").innerHTML = "EXPIRED";
-    }
     timeTaken += 1000;
     let mins = Math.floor((timeTaken % (1000 * 60 * 60)) / (1000 * 60));
     let secs = Math.floor((timeTaken % (1000 * 60)) / 1000);
     var finalTime = mins + "m " + secs + "s ";
+    let now = new Date().getTime();
+    let distance = countDownDate - now;
+    if (timeSelected > 0){
+      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      document.getElementById("clockdiv").innerHTML = minutes + "m " + seconds + "s ";
+    }
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("clockdiv").innerHTML = "EXPIRED";
+    }
   }, 1000);
 };
 //END CREATE TIMER AND COUNTDOWN
 //BEGIN CLICK FUNCTION
+//CHANGE NUMBER OF CARDS FLIPPED TO .length of FLIPPED GROUP
 let numberOfCardsFlipped = 0;
 let cardLastClicked = 99;
 let divLastClicked = "";
@@ -331,10 +334,11 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 //BEGIN END GAME
 function gameWin(){
   let holder = `
-  <div onselectstart="return false" id="pre_game_body">
+  <div onselectstart="return false" id="victory_page">
     <div id="pre_game_inner_body">
-      <h2>Welcome ${userName}!</h2>
-      <p>You have ${time} to match all of the memes. When you are ready, click anywhere to start!</p>
+      <h2>Congrats, ${userName}!</h2>
+      <p>You have won the game!<p>
+      <p>You matched all ${cardsRequested} cards in ${finalTime}!<p>
     </div>
   </div>
   `;
