@@ -2,6 +2,7 @@ html {
   text-align: center;
   background-color: #FF4F3F;
   font-family: 'Shrikhand', cursive;
+  cursor:pointer;
 }
 h1 {
   font-size: 70px;
