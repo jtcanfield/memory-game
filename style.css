@@ -39,11 +39,16 @@ h1 {
   position: absolute;
   text-align: center;
 }
+#loss_page{
+  color: #FFFFFF;
+  -webkit-animation:sadnessfade 2s 1;
+}
 #party_gif{
   background-image: url(img/winningbackground.gif);
 }
 #loss_gif{
   background-image: url(img/lossgif.gif);
+  background-size: cover;
 }
 #victory_page{
   -webkit-animation:popper 1s 1;
@@ -77,6 +82,10 @@ h1 {
   30%       {transform: rotate(0deg) translate(-30px,0px);}
   98%       {transform: rotate(2000deg) translate(1000px, 0px);}
   100%      {transform: rotate(2000deg) translate(1000px, 0px);}
+}
+@-webkit-keyframes sadnessfade {
+  0%        {transform: translate(-100px, 0px) opacity(0);}
+  100%      {transform: translate(0px, 0px) opacity(1);}
 }
 @-webkit-keyframes losing {
   0%        {transform: rotate(0deg);}
