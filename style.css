@@ -42,6 +42,9 @@ h1 {
 #party_gif{
   background-image: url(img/winningbackground.gif);
 }
+#loss_gif{
+  background-image: url(img/lossgif.gif);
+}
 #victory_page{
   -webkit-animation:popper 1s 1;
 }

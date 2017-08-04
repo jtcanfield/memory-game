@@ -381,7 +381,7 @@ function gameLoss(reasonCode){
   </div>
   `;
   clearInterval(x);
-  setTimeout(function() {  htmlItself.setAttribute("id", "party_gif"); htmlBody.innerHTML = holder; }, 5000);
+  setTimeout(function() {  htmlItself.setAttribute("id", "loss_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
 //END END GAME
 //BEGIN STANDALONE FADE FUNCTIONS
