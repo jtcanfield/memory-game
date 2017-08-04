@@ -41,7 +41,7 @@ h1 {
 }
 #loss_page{
   color: #FFFFFF;
-  -webkit-animation:sadnessfade 2s 1;
+  -webkit-animation:sadness 3s 1;
 }
 #party_gif{
   background-image: url(img/winningbackground.gif);
@@ -83,9 +83,9 @@ h1 {
   98%       {transform: rotate(2000deg) translate(1000px, 0px);}
   100%      {transform: rotate(2000deg) translate(1000px, 0px);}
 }
-@-webkit-keyframes sadnessfade {
-  0%        {transform: translate(-100px, 0px) opacity(0);}
-  100%      {transform: translate(0px, 0px) opacity(1);}
+@-webkit-keyframes sadness {
+  0%        {transform: translate(0px, -500px); opacity: 0;}
+  100%      {transform: translate(0px, 0px); opacity: 1;}
 }
 @-webkit-keyframes losing {
   0%        {transform: rotate(0deg);}
