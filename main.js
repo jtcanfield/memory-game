@@ -13,6 +13,7 @@ let cardsfinished = 0;
 let cardsRequested = 50; // default 50
 let timeSelected = 300000; //default 300000
 let healthSelected = 3.125; //default 3.125
+let x = 0;
 let timeSelectedCaluculated = "5 minutes and 0 seconds ";
 let userName = "";
 let heartRemoved = 0;
@@ -234,7 +235,7 @@ function timerBeginCount(){
 let timeTaken = 0;
 let countDownDate = new Date().getTime();
 countDownDate = countDownDate + timeSelected;
-  var x = setInterval(function() {
+  x = setInterval(function() {
     timeTaken += 1000;
     let mins = Math.floor((timeTaken % (1000 * 60 * 60)) / (1000 * 60));
     let secs = Math.floor((timeTaken % (1000 * 60)) / 1000);
@@ -261,6 +262,11 @@ let divLastClicked = "";
 let lastDivClickedBackground = "";
 let flippedGroup = [];
 function playerclick(divClicked, divNumber){
+  if (true === true){
+      gameWin();
+  } else if (false === true) {//BRACKET TO BREAK CLICK
+
+
   console.log(Math.round(100 - heartRemoved));
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
@@ -317,6 +323,7 @@ function playerclick(divClicked, divNumber){
       lastDivClickedBackground = imageBackground;
       divLastClicked = divClicked;
     }
+  }//BRACKET TO BREAK CLICK
 }
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
