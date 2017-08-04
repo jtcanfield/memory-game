@@ -229,7 +229,6 @@ let holderLargeDivisions = `
     }
   }
   createRandomizedBoxDivs(cardsRequested);
-  // createRandomizedBoxDivs(50);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
@@ -250,6 +249,7 @@ countDownDate = countDownDate + timeSelected;
       document.getElementById("clockdiv").innerHTML = minutes + "m " + seconds + "s ";
     }
     if (distance < 0) {
+      gameLoss("You ran out of time!");
       clearInterval(x);
       document.getElementById("clockdiv").innerHTML = "EXPIRED";
     }
@@ -309,18 +309,20 @@ function playerclick(divClicked, divNumber){
       let healthRemover = document.getElementById("health_remover");
       heartRemoved += healthSelected;
       healthRemover.style.width = heartRemoved+"%";
-
-      setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 1000);
-
-      setTimeout(function() {
-        flippedGroup[0].setAttribute("style", "");
-        flippedGroup[1].setAttribute("style", "");
-        numberOfCardsFlipped = 0;
-        cardLastClicked = 99;
-        lastDivClickedBackground = "";
-        divLastClicked = "";
-        flippedGroup = [];
-      }, 3000);
+      if (heartRemoved > 99){
+        gameLoss("You ran out of health!");
+      } else {
+        setTimeout(function() {  incorrectAnimation(divLastClicked, lastDivClickedBackground, divClicked, imageBackground); }, 1000);
+        setTimeout(function() {
+          flippedGroup[0].setAttribute("style", "");
+          flippedGroup[1].setAttribute("style", "");
+          numberOfCardsFlipped = 0;
+          cardLastClicked = 99;
+          lastDivClickedBackground = "";
+          divLastClicked = "";
+          flippedGroup = [];
+        }, 3000);
+      }
     } else {
       lastDivClickedBackground = imageBackground;
       divLastClicked = divClicked;
@@ -362,8 +364,24 @@ function gameWin(){
   clearInterval(x);
   setTimeout(function() {  htmlItself.setAttribute("id", "party_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
-function gameLoss(){
-
+function gameLoss(reasonCode){
+  let percentageofhealthleft = Math.round(100 - heartRemoved);
+  var nodes = document.getElementById('innerbox_div').childNodes;
+  for(var i=1; i<nodes.length; i++) {
+    nodes[i].classList.add('losing_div_actions');
+  }
+  let holder = `
+  <div onselectstart="return false" id="loss_page">
+    <div id="victory_page_inner_body">
+      <h1>You lost, ${userName}.</h1>
+      <h2>${reasonCode}<h2>
+      <p>You matched ${cardsfinished} cards in ${finalTime} with ${percentageofhealthleft}% health remaining.<p>
+      <a id="name_input_box" href="https://jtcanfield.github.io/memory-game/">Click here to play again!</a>
+    </div>
+  </div>
+  `;
+  clearInterval(x);
+  setTimeout(function() {  htmlItself.setAttribute("id", "party_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
 //END END GAME
 //BEGIN STANDALONE FADE FUNCTIONS
