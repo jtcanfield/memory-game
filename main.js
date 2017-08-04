@@ -1,9 +1,8 @@
 /*It helped me to build the markup that I wanted using only html and css,
 and then program the JS to create an exact replica of my markup.*/
 /* TODO
+ADD WIN/LOSS CONDITIONS
 ADD ANIMATIONS WITH USER NAME
-SET UNLIMITED TIME POSSIBLE
-MAKE TEXT NONSELECTABLE
 ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
 IMPLEMENT MEDIA QUERIES SO IT WORKS WELL ON MOBILE AND TABLET
 */
@@ -42,8 +41,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-askForName();
-// createGameBoard();
+// askForName();
+createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -231,6 +230,7 @@ let holderLargeDivisions = `
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
 function timerBeginCount(){
+let timeTaken = 0;
 let countDownDate = new Date().getTime();
 countDownDate = countDownDate + timeSelected;
   var x = setInterval(function() {
@@ -243,6 +243,10 @@ countDownDate = countDownDate + timeSelected;
       clearInterval(x);
       document.getElementById("clockdiv").innerHTML = "EXPIRED";
     }
+    timeTaken += 1000;
+    let mins = Math.floor((timeTaken % (1000 * 60 * 60)) / (1000 * 60));
+    let secs = Math.floor((timeTaken % (1000 * 60)) / 1000);
+    var finalTime = mins + "m " + secs + "s ";
   }, 1000);
 };
 //END CREATE TIMER AND COUNTDOWN
@@ -326,7 +330,16 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 //END MATCHING ANIMATIONS
 //BEGIN END GAME
 function gameWin(){
-
+  let holder = `
+  <div onselectstart="return false" id="pre_game_body">
+    <div id="pre_game_inner_body">
+      <h2>Welcome ${userName}!</h2>
+      <p>You have ${time} to match all of the memes. When you are ready, click anywhere to start!</p>
+    </div>
+  </div>
+  `;
+  htmlBody.innerHTML = holder;
+  clearInterval(x);
 }
 function gameLoss(){
 
