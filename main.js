@@ -115,8 +115,8 @@ function updateHealth(val) {
 }
 function updateTime(val) {
   timeSelected = document.getElementById("timeSelection").value;
-  let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
   timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
   document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
 }
