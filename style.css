@@ -5,7 +5,7 @@ html {
   cursor: pointer;
 }
 body {
-  margin: 0;
+  margin: 10px;
 }
 @-webkit-keyframes zoom {
   0%, 100% {transform: scale(1);}
@@ -174,11 +174,27 @@ input[type=range]::-moz-range-thumb {
   border-radius: 3px;
   background: #ffffff;
 }
+@media (max-width: 900px)
+and (orientation: portrait) {
+  #innerbox_div div{
+    border: 1px solid #000000;
+    margin: 5px;
+    height: 150px;
+    width: 150px;
+  }
+}
 @media (max-width: 800px)
 and (orientation: portrait) {
   html {
     height: 100%;
     width: 100%;
+    display: flex;
+    justify-content: space-around;
+  }
+  body{
+    height: 95%;
+    width: 95%;
+    margin: 0px;
   }
   h1 {
     font-size: 30px;
@@ -186,6 +202,7 @@ and (orientation: portrait) {
   }
   #innerbox_div div{
     border: 1px solid #000000;
+    margin: 0px;
     height: 100px;
     width: 100px;
   }
