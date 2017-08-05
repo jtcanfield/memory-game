@@ -44,8 +44,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-// askForName();
-createGameBoard();
+askForName();
+// createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -103,7 +103,7 @@ function createOptionsMenu(){
         <p>Health(number of mismatches allowed): <span id="healthInput">32</span></p>
         <input type="range" id="timeSelection" step="15000" min="180000" max="375000" value="300000" onchange="updateTime(this.value)" oninput="updateTime(this.value)"></input><br>
         <p>Time: <span id="timeInput">5 minutes and 0 seconds </span></p>
-        <button id="nextFunctionButton" onclick="nextSection()">Select</button>
+        <button id="nextFunctionButton" onclick="nextSection()">Begin Game!</button>
       </div>
     </div>
     `;
