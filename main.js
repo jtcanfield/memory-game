@@ -359,8 +359,8 @@ function gameWin(){
 function gameLoss(reasonCode){
   let percentageofhealthleft = Math.round(100 - heartRemoved);
   var nodes = document.getElementById('innerbox_div').childNodes;
-  for(var i=1; i<nodes.length; i++) {
-    nodes[i].classList.add('losing_div_actions');
+  for(var k=1; k<nodes.length; k++) {
+    nodes[k].classList.add('losing_div_actions');
   }
   let holder = `
   <div onselectstart="return false" id="loss_page">
