@@ -22,7 +22,6 @@ h1 {
   transition: all 0.4s;
   background-size: contain;
   transform: rotateY(-180deg);
-  /*transform: scaleX(-1);*/
 }
 .winning_div_actions{
   -webkit-animation:winning 5s 1;
@@ -136,4 +135,24 @@ h1 {
   border: 5px solid #FF0000;
   height: 195px;
   width: 195px;
+}
+@media (max-width: 800px)
+and (orientation: portrait) {
+  html {
+    height: 100%;
+    width: 100%;
+  }
+  #innerbox_div div{
+    border: 1px solid #000000;
+    margin: 0px;
+    height: 100px;
+    width: 100px;
+    transition: all 0.4s;
+    background-size: contain;
+    transform: rotateY(-180deg);
+  }
+  h1 {
+    font-size: 30px;
+    margin: 0;
+  }
 }
