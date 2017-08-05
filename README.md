@@ -1,4 +1,4 @@
 # To view in your browser, click here:
-just kidding, it doesn't even exist yet
+https://jtcanfield.github.io/memory-game/
 
-Weekly project for TIY, week 3. 
+Weekly project for TIY, week 3.
