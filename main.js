@@ -44,8 +44,8 @@ function createHeader(){
   `;
     setHeader.innerHTML = holder;
 }
-askForName();
-// createGameBoard();
+// askForName();
+createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     let holder = `
@@ -225,7 +225,7 @@ let holderLargeDivisions = `
       amountOfCards++;
     }
   }
-  createRandomizedBoxDivs(cardsRequested);
+  createRandomizedBoxDivs(70);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
@@ -322,12 +322,13 @@ function playerclick(divClicked, divNumber){
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
 function incorrectAnimation(item1, item1Background, item2, item2Background){
-  item1.setAttribute("style", "background-image: url("+item1Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000; transform: rotateY(0deg);");
-  item2.setAttribute("style", "background-image: url("+item2Background+"); height: 190px;  width: 190px; border: 5px solid #FF0000; transform: rotateY(0deg);");
+  console.log(item1.clientHeight);
+  item1.setAttribute("style", "background-image: url("+item1Background+"); height: "+(item1.clientHeight-7)+"px; width: "+(item1.clientWidth-7)+"px; border: 5px solid #FF0000; transform: rotateY(0deg);");
+  item2.setAttribute("style", "background-image: url("+item2Background+"); height: "+(item2.clientHeight-7)+"px; width: "+(item2.clientWidth-7)+"px; border: 5px solid #FF0000; transform: rotateY(0deg);");
 }
 function correctAnimation(item1, item1Background, item2, item2Background){
-  item1.setAttribute("style", "background-image: url("+item1Background+"); height: 190px;  width: 190px; border: 5px solid #00FF00; transform: rotateY(0deg);");
-  item2.setAttribute("style", "background-image: url("+item2Background+"); height: 190px;  width: 190px; border: 5px solid #00FF00; transform: rotateY(0deg);");
+  item1.setAttribute("style", "background-image: url("+item1Background+"); height: "+(item1.clientHeight-7)+"px; width: "+(item1.clientWidth-7)+"px; border: 5px solid #00FF00; transform: rotateY(0deg);");
+  item2.setAttribute("style", "background-image: url("+item2Background+"); height: "+(item2.clientHeight-7)+"px; width: "+(item2.clientWidth-7)+"px; border: 5px solid #00FF00; transform: rotateY(0deg);");
   cardsfinished += 2;
   if (cardsfinished === cardsRequested){
     gameWin();
