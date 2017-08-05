@@ -91,9 +91,11 @@ h1 {
 }
 #pre_game_inner_options_menu h2{
   -webkit-animation:zoom 2s infinite;
+  margin: 0% 10%;
 }
 #pre_game_inner_body h2{
   -webkit-animation:zoom 2s infinite;
+  margin: 0% 10%;
 }
 #cardSelection, #healthSelection, #timeSelection{
   width: 50%;
