@@ -174,8 +174,7 @@ input[type=range]::-moz-range-thumb {
   border-radius: 3px;
   background: #ffffff;
 }
-@media (max-width: 900px)
-and (orientation: portrait) {
+@media (max-width: 900px) {
   #innerbox_div div{
     border: 1px solid #000000;
     margin: 5px;
