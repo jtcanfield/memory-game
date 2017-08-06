@@ -226,7 +226,7 @@ let holderLargeDivisions = `
       amountOfCards++;
     }
   }
-  createRandomizedBoxDivs(70);
+  createRandomizedBoxDivs(cardsRequested);
 }
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
