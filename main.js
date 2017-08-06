@@ -7,20 +7,20 @@ ADD ANIMATIONS ON GAME AND OR PAGE LOAD
 ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
 IMPLEMENT MEDIA QUERIES SO IT WORKS WELL ON MOBILE AND TABLET
 */
-let scriptLoadingText = document.getElementById("script_load_text");
+var scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
-let htmlBody = document.querySelector("body");
-let htmlItself = document.querySelector("html");
-let cardsfinished = 0;
-let cardsRequested = 50; // default 50
-let timeSelected = 300000; //default 300000
-let healthSelected = 3.125; //default 3.125
-let x = 0;
-let timeSelectedCaluculated = "5 minutes and 0 seconds ";
-let userName = "";
-let heartRemoved = 0;
-let finalTime = "";
-let gameCardsObject = {//opens parenting object
+var htmlBody = document.querySelector("body");
+var htmlItself = document.querySelector("html");
+var cardsfinished = 0;
+var cardsRequested = 50; // default 50
+var timeSelected = 300000; //default 300000
+var healthSelected = 3.125; //default 3.125
+var x = 0;
+var timeSelectedCaluculated = "5 minutes and 0 seconds ";
+var userName = "";
+var heartRemoved = 0;
+var finalTime = "";
+var gameCardsObject = {//opens parenting object
   "results":[//opens array
     /*
     {//opens first object (unnamed) in array
@@ -35,8 +35,8 @@ let gameCardsObject = {//opens parenting object
 };//closes parenting object
 createHeader();
 function createHeader(){
-  let setHeader = document.querySelector("head");
-  let holder = `
+  var setHeader = document.querySelector("head");
+  var holder = `
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto|Shrikhand" rel="stylesheet">
@@ -49,7 +49,7 @@ askForName();
 // createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
-    let holder = `
+    var holder = `
     <div onselectstart="return false" id="name_entry" onclick="checkName()">
       <div id="name_entry_inner_box">
         <h2>Whats your name?</h2>
@@ -63,21 +63,21 @@ function askForName(){
     </div>
     `;
   htmlBody.innerHTML = holder;
-  let textFocus = document.getElementById("name_input_box");
+  var textFocus = document.getElementById("name_input_box");
   textFocus.focus();
   textFocus.select();
 }
 //END NAME ENTRY
 //BEGIN NAME CHECKER
-let noNameTries = 0;
+var noNameTries = 0;
 function checkName(){
   userName = document.getElementById("name_input_box").value;
-  let textFocus = document.getElementById("name_plate_announcement");
-  let arrayOfText = ["Oh come on.... at least *try* to put a name in!", "Could ya please put your name in?", "Pretty pleeeeease??", "Okay, Fine!"]
+  var textFocus = document.getElementById("name_plate_announcement");
+  var arrayOfText = ["Oh come on.... at least *try* to put a name in!", "Could ya please put your name in?", "Pretty pleeeeease??", "Okay, Fine!"]
   if (userName === "" && noNameTries <= 3){
     textFocus.innerHTML = arrayOfText[noNameTries];
     noNameTries = noNameTries + 1;
-    let reAdd = document.getElementById("name_input_box");
+    var reAdd = document.getElementById("name_input_box");
     if (noNameTries <= 3){
       reAdd.focus();
       reAdd.select();
@@ -94,7 +94,7 @@ function checkName(){
 //END NAME CHECKER
 //BEGIN OPTIONS MENU
 function createOptionsMenu(){
-    let holder = `
+    var holder = `
     <div onselectstart="return false" id="pre_game_options_menu">
       <div id="pre_game_inner_options_menu">
         <h2>Select your options, ${userName}.</h2>
@@ -133,8 +133,8 @@ function updateTime(val) {
     document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
   } else {
     timeSelected = parseInt(document.getElementById("timeSelection").value);
-    let minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
+    var minutes = Math.floor((timeSelected % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = Math.floor((timeSelected % (1000 * 60)) / 1000);
     timeSelectedCaluculated = minutes + " minutes and " + seconds + " seconds ";
     document.getElementById('timeInput').innerHTML=timeSelectedCaluculated;
   }
@@ -148,7 +148,7 @@ function nextSection(){
 //END OPTIONS MENU
 //BEGIN INTRO
 function createPreGame(userName, time){
-    let holder = `
+    var holder = `
     <div onselectstart="return false" id="pre_game_body">
       <div id="pre_game_inner_body">
         <h2>Welcome ${userName}!</h2>
@@ -165,7 +165,7 @@ function createPreGame(userName, time){
 function startCountDown(){
   fadeOut(document.getElementById("pre_game_body"), .1);
   function countDownText(second){
-    let holder = `
+    var holder = `
     <div onselectstart="return false" id="count_down_timer">
     <h1>${second}</h1>
     </div>
@@ -183,7 +183,7 @@ function startCountDown(){
 //END COUNTDOWN TO START
 //BEGIN CREATE GAME BOARD
 function createGameBoard(){
-let holderLargeDivisions = `
+var holderLargeDivisions = `
     <div onselectstart="return false" id="game_body">
       <h1>The Annoying Memory Game</h1>
         <div id="clockdiv"></div>
@@ -198,18 +198,18 @@ let holderLargeDivisions = `
   htmlBody.innerHTML = holderLargeDivisions;
   timerBeginCount();
   function createRandomizedBoxDivs(maxCards){
-    let imagesNeeded = maxCards/2;
-    let amountOfCards = 0;
-    let amountOfImagesWhile = 0;
-    let parentToAddTo = document.getElementById("innerbox_div");
-    let arrayOfNumbersallowed1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
-    let arrayOfNumbers2 = [];
+    var imagesNeeded = maxCards/2;
+    var amountOfCards = 0;
+    var amountOfImagesWhile = 0;
+    var parentToAddTo = document.getElementById("innerbox_div");
+    var arrayOfNumbersallowed1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+    var arrayOfNumbers2 = [];
     while (amountOfImagesWhile < imagesNeeded){
-        let randomGenIndexToTakeOutOfArray = Math.floor(Math.random()*arrayOfNumbersallowed1.length);
-        let numberPickedInArray = arrayOfNumbersallowed1[randomGenIndexToTakeOutOfArray];
+        var randomGenIndexToTakeOutOfArray = Math.floor(Math.random()*arrayOfNumbersallowed1.length);
+        var numberPickedInArray = arrayOfNumbersallowed1[randomGenIndexToTakeOutOfArray];
         gameCardsObject.results[amountOfImagesWhile] = new Object();
         gameCardsObject.results[amountOfImagesWhile].memePicture = "img/memepicture"+numberPickedInArray+".jpg";
-        let secondImageIndex = amountOfImagesWhile+imagesNeeded;
+        var secondImageIndex = amountOfImagesWhile+imagesNeeded;
         gameCardsObject.results[secondImageIndex] = new Object();
         gameCardsObject.results[secondImageIndex].memePicture = "img/memepicture"+numberPickedInArray+".jpg";
         arrayOfNumbersallowed1.splice(randomGenIndexToTakeOutOfArray,1);
@@ -217,9 +217,9 @@ let holderLargeDivisions = `
       amountOfImagesWhile++;
     }
     while (amountOfCards < maxCards){
-      let randomGenIndexToTakeOutOfArray = Math.floor(Math.random()*arrayOfNumbers2.length);
-      let numberPickedInArray = arrayOfNumbers2[randomGenIndexToTakeOutOfArray];
-      let newCard = document.createElement("div");
+      var randomGenIndexToTakeOutOfArray = Math.floor(Math.random()*arrayOfNumbers2.length);
+      var numberPickedInArray = arrayOfNumbers2[randomGenIndexToTakeOutOfArray];
+      var newCard = document.createElement("div");
       newCard.setAttribute("onclick", "playerclick(this, "+numberPickedInArray+")");
       parentToAddTo.appendChild(newCard);
       arrayOfNumbers2.splice(randomGenIndexToTakeOutOfArray,1);
@@ -231,19 +231,19 @@ let holderLargeDivisions = `
 //END CREATE GAME BOARD
 //BEGIN CREATE TIMER AND COUNTDOWN
 function timerBeginCount(){
-let timeTaken = 0;
-let countDownDate = new Date().getTime();
+var timeTaken = 0;
+var countDownDate = new Date().getTime();
 countDownDate = countDownDate + timeSelected;
   x = setInterval(function() {
     timeTaken += 1000;
-    let mins = Math.floor((timeTaken % (1000 * 60 * 60)) / (1000 * 60));
-    let secs = Math.floor((timeTaken % (1000 * 60)) / 1000);
+    var mins = Math.floor((timeTaken % (1000 * 60 * 60)) / (1000 * 60));
+    var secs = Math.floor((timeTaken % (1000 * 60)) / 1000);
     finalTime = mins + "m " + secs + "s ";
-    let now = new Date().getTime();
-    let distance = countDownDate - now;
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
     if (timeSelected > 0){
-      let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+      var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       document.getElementById("clockdiv").innerHTML = minutes + "m " + seconds + "s ";
     }
     if (distance < 0) {
@@ -256,22 +256,22 @@ countDownDate = countDownDate + timeSelected;
 //END CREATE TIMER AND COUNTDOWN
 //BEGIN CLICK FUNCTION
 //CHANGE NUMBER OF CARDS FLIPPED TO .length of FLIPPED GROUP
-let numberOfCardsFlipped = 0;
-let cardLastClicked = 99;
-let divLastClicked = "";
-let lastDivClickedBackground = "";
-let flippedGroup = [];
+var numberOfCardsFlipped = 0;
+var cardLastClicked = 99;
+var divLastClicked = "";
+var lastDivClickedBackground = "";
+var flippedGroup = [];
 function playerclick(divClicked, divNumber){
   if (numberOfCardsFlipped >= 2 || cardLastClicked === divNumber){
     return
   }
   cardLastClicked = divNumber;
-  let lengthOfBoard = document.getElementById("innerbox_div").children.length;
-  let imageBackground = gameCardsObject.results[divNumber].memePicture;
+  var lengthOfBoard = document.getElementById("innerbox_div").children.length;
+  var imageBackground = gameCardsObject.results[divNumber].memePicture;
   flippedGroup.push(divClicked);
-  let emptyString = "";
+  var emptyString = "";
   divClicked.setAttribute("style", "background-image: url("+emptyString+");");
-  let rotatedegre = -180;
+  var rotatedegre = -180;
   function rotateImage(){
     if (rotatedegre == -90){
       divClicked.setAttribute("style", "background-image: url("+imageBackground+");");
@@ -298,7 +298,7 @@ function playerclick(divClicked, divNumber){
       return
     }
     if (numberOfCardsFlipped >= 2){
-      let healthRemover = document.getElementById("health_remover");
+      var healthRemover = document.getElementById("health_remover");
       heartRemoved += healthSelected;
       healthRemover.style.width = heartRemoved+"%";
       if (heartRemoved > 99){
@@ -338,12 +338,12 @@ function correctAnimation(item1, item1Background, item2, item2Background){
 //END MATCHING ANIMATIONS
 //BEGIN END GAME
 function gameWin(){
-  let percentageofhealthleft = Math.round(100 - heartRemoved);
+  var percentageofhealthleft = Math.round(100 - heartRemoved);
   var nodes = document.getElementById('innerbox_div').childNodes;
   for(var i=1; i<nodes.length; i++) {
     nodes[i].classList.add('winning_div_actions');
   }
-  let holder = `
+  var holder = `
   <div onselectstart="return false" id="victory_page">
     <div id="victory_page_inner_body">
       <h1>Congrats, ${userName}!</h1>
@@ -357,12 +357,12 @@ function gameWin(){
   setTimeout(function() {  htmlItself.setAttribute("id", "party_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
 function gameLoss(reasonCode){
-  let percentageofhealthleft = Math.round(100 - heartRemoved);
+  var percentageofhealthleft = Math.round(100 - heartRemoved);
   var nodes = document.getElementById('innerbox_div').childNodes;
   for(var k=1; k<nodes.length; k++) {
     nodes[k].classList.add('losing_div_actions');
   }
-  let holder = `
+  var holder = `
   <div onselectstart="return false" id="loss_page">
     <div id="victory_page_inner_body">
       <h1>You lost, ${userName}.</h1>
