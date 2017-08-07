@@ -42,7 +42,6 @@ function createHeader(){
     setHeader.innerHTML = holder;
 }
 askForName();
-// createGameBoard();
 //BEGIN NAME ENTRY
 function askForName(){
     var holder = `
@@ -86,7 +85,6 @@ function checkName(){
   fadeOut(document.getElementById("name_entry"), .01);
   setTimeout(function() { createOptionsMenu(userName);}, 2000);
 }
-
 //END NAME CHECKER
 //BEGIN OPTIONS MENU
 function createOptionsMenu(){
