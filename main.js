@@ -1,11 +1,7 @@
-/*It helped me to build the markup that I wanted using only html and css,
-and then program the JS to create an exact replica of my markup.*/
 /* TODO
 ADD ANIMATIONS WITH USER NAME
 FIX HEALTH AND TIME TO TOP OF SCREEN
-ADD ANIMATIONS ON GAME AND OR PAGE LOAD
 ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
-IMPLEMENT MEDIA QUERIES SO IT WORKS WELL ON MOBILE AND TABLET
 */
 var scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
