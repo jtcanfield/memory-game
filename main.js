@@ -317,7 +317,6 @@ function playerclick(divClicked, divNumber){
 //END CLICK FUNCTION
 //BEGIN MATCHING ANIMATIONS
 function incorrectAnimation(item1, item1Background, item2, item2Background){
-  console.log(item1.clientHeight);
   item1.setAttribute("style", "background-image: url("+item1Background+"); height: "+(item1.clientHeight-7)+"px; width: "+(item1.clientWidth-7)+"px; border: 5px solid #FF0000; transform: rotateY(0deg);");
   item2.setAttribute("style", "background-image: url("+item2Background+"); height: "+(item2.clientHeight-7)+"px; width: "+(item2.clientWidth-7)+"px; border: 5px solid #FF0000; transform: rotateY(0deg);");
 }
