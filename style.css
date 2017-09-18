@@ -262,3 +262,10 @@ and (orientation: portrait) {
     width: 80px;
   }
 }
+.statsdiv{
+  width: 100%;
+  height: 5%;
+  bottom: 0;
+  /*pointer-events:all;*/
+  position: absolute;
+}

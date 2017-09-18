@@ -42,10 +42,11 @@ function firefetch(dataobj){
 }
 //END POST FETCH
 //BEGIN FETCH STATS
-function pullstats(){
+function pullstats(callback){
   fetch('https://memorygameapi.herokuapp.com/stats').then(results => {
         return results.json();
       }).then(data => {
+        callback(data);
         return data
       })
 }
@@ -63,6 +64,13 @@ function createHeader(){
     setHeader.innerHTML = holder;
 }
 askForName();
+//STATS
+function showstats(){
+  pullstats(function(x){
+    console.log(x)
+  });
+}
+//STATS
 //BEGIN NAME ENTRY
 function askForName(){
     var holder = `
@@ -76,6 +84,9 @@ function askForName(){
         <br><br>
         <p id="name_plate_announcement"> </p>
       </div>
+    </div>
+    <div class="statsdiv">
+      <button onclick="showstats()">Stats</button>
     </div>
     `;
   htmlBody.innerHTML = holder;
@@ -121,6 +132,9 @@ function createOptionsMenu(){
         <p>Time: <span id="timeInput">5 minutes and 0 seconds </span></p>
         <button id="nextFunctionButton" onclick="nextSection()">Begin Game!</button>
       </div>
+    </div>
+    <div class="statsdiv">
+      <button onclick="showstats()">Stats</button>
     </div>
     `;
   htmlBody.innerHTML = holder;
@@ -169,6 +183,9 @@ function createPreGame(userName, time){
         <h2>Welcome ${userName}!</h2>
         <p>You have ${time} to match all of the memes. When you are ready, click anywhere to start!</p>
       </div>
+    </div>
+    <div class="statsdiv">
+      <button onclick="showstats()">Stats</button>
     </div>
     `;
   htmlBody.innerHTML = holder;
@@ -366,6 +383,9 @@ function gameWin(){
       <a id="name_input_box" href="https://jtcanfield.github.io/memory-game/">Click here to play again!</a>
     </div>
   </div>
+  <div class="statsdiv">
+    <button onclick="showstats()">Stats</button>
+  </div>
   `;
   let jsondata = {
     player: userName,
@@ -392,6 +412,9 @@ function gameLoss(reasonCode){
       <p>You matched ${cardsfinished} cards in ${finalTime} with ${percentageofhealthleft}% health remaining.<p>
       <a id="name_input_box" href="https://jtcanfield.github.io/memory-game/">Click here to play again!</a>
     </div>
+  </div>
+  <div class="statsdiv">
+    <button onclick="showstats()">Stats</button>
   </div>
   `;
   let jsondata = {
