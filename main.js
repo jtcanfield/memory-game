@@ -1,7 +1,6 @@
 /* TODO
 ADD ANIMATIONS WITH USER NAME
 FIX HEALTH AND TIME TO TOP OF SCREEN
-ADD POINTS SYSTEM AND SCORING (AND READY FOR FUTURE SERVER SIDE KEEPING)
 */
 var scriptLoadingText = document.getElementById("script_load_text");
 scriptLoadingText.style.display = 'none';
@@ -29,6 +28,28 @@ var gameCardsObject = {//opens parenting object
 
   ]//closes array
 };//closes parenting object
+//BEGIN POST FETCH
+function firefetch(dataobj){
+  let string = JSON.stringify(dataobj);
+  fetch("https://memorygameapi.herokuapp.com/stats/"+string, {
+    method: "POST",
+    body: dataobj,
+  }).then(response => {
+    console.log(response);
+  }).catch(err => {
+    console.log(err);
+  });
+}
+//END POST FETCH
+//BEGIN FETCH STATS
+function pullstats(){
+  fetch('https://memorygameapi.herokuapp.com/stats').then(results => {
+        return results.json();
+      }).then(data => {
+        return data
+      })
+}
+//END FETCH STATS
 createHeader();
 function createHeader(){
   var setHeader = document.querySelector("head");
@@ -87,28 +108,7 @@ function checkName(){
 }
 //END NAME CHECKER
 //BEGIN OPTIONS MENU
-function createOptionsMenu(uzertoadd){
-  fetch('https://memorygameapi.herokuapp.com/listing').then(results => {
-        return results.json();
-      }).then(data => {
-        console.log(data);
-      })
-  // handleSubmit = (event) => {
-    // let listItem = JSON.stringify(this.state);
-    fetch("https://memorygameapi.herokuapp.com/stats/"+uzertoadd, {
-    // fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
-      method: "POST",
-      // body: "listItem",
-      // headers: {
-      //   'Accept': 'application/json',
-      //   'Content-Type': 'application/json'
-      // }
-    }).then(response => {
-      console.log(response);
-    }).catch(err => {
-      console.log(err);
-    });
-  // }
+function createOptionsMenu(){
     var holder = `
     <div onselectstart="return false" id="pre_game_options_menu">
       <div id="pre_game_inner_options_menu">
@@ -367,6 +367,14 @@ function gameWin(){
     </div>
   </div>
   `;
+  let jsondata = {
+    player: userName,
+    cards: cardsRequested,
+    time: finalTime,
+    health: percentageofhealthleft,
+    status: "Win"
+  }
+  firefetch(jsondata);
   clearInterval(x);
   setTimeout(function() {  htmlItself.setAttribute("id", "party_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
@@ -386,6 +394,14 @@ function gameLoss(reasonCode){
     </div>
   </div>
   `;
+  let jsondata = {
+    player: userName,
+    cards: cardsRequested,
+    time: finalTime,
+    health: percentageofhealthleft,
+    status: "Loss"
+  }
+  firefetch(jsondata);
   clearInterval(x);
   setTimeout(function() {  htmlItself.setAttribute("id", "loss_gif"); htmlBody.innerHTML = holder; }, 5000);
 }
