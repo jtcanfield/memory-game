@@ -88,6 +88,11 @@ function checkName(){
 //END NAME CHECKER
 //BEGIN OPTIONS MENU
 function createOptionsMenu(uzertoadd){
+  fetch('https://memorygameapi.herokuapp.com/listing').then(results => {
+        return results.json();
+      }).then(data => {
+        console.log(data);
+      })
   // handleSubmit = (event) => {
     // let listItem = JSON.stringify(this.state);
     fetch("https://memorygameapi.herokuapp.com/stats/"+uzertoadd, {
