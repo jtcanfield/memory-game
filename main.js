@@ -66,25 +66,18 @@ function createHeader(){
 askForName();
 //STATS
 function showstats(){
+  var divthatisneeded = document.body.childNodes[1];
   var statsbody = document.querySelector(".statsdiv");
   if (document.querySelector(".statisticsholderactive")){
-    var holder = `
-    <div class="statsdiv">
-      <button onclick="showstats()">Stats</button>
-    </div>
-    `;
-    statsbody.innerHTML = holder;
+    divthatisneeded.style.display = "";
+    htmlBody.removeChild(document.body.childNodes[5]);
     return
   } else {
+    divthatisneeded.style.display = "none";
+    var newstatsdiv = document.createElement('div');
+    newstatsdiv.setAttribute("class", "statisticsholderactive");
+    htmlBody.appendChild(newstatsdiv);
     pullstats(function(x){
-      var holder = `
-      <div class="statsdiv">
-        <button onclick="showstats()">Stats</button>
-      </div>
-      <div class="statisticsholderactive">
-      </div>
-      `;
-      statsbody.innerHTML = holder;
       var statsholder = document.querySelector(".statisticsholderactive");
       x.map((players)=>{
         var playerdiv = document.createElement('div');
