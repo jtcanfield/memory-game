@@ -87,7 +87,23 @@ function checkName(){
 }
 //END NAME CHECKER
 //BEGIN OPTIONS MENU
-function createOptionsMenu(){
+function createOptionsMenu(uzertoadd){
+  // handleSubmit = (event) => {
+    // let listItem = JSON.stringify(this.state);
+    fetch("https://memorygameapi.herokuapp.com/stats/"+uzertoadd, {
+    // fetch("https://tiny-lasagna-server.herokuapp.com/collections/playlisting", {
+      method: "POST",
+      // body: "listItem",
+      // headers: {
+      //   'Accept': 'application/json',
+      //   'Content-Type': 'application/json'
+      // }
+    }).then(response => {
+      console.log(response);
+    }).catch(err => {
+      console.log(err);
+    });
+  // }
     var holder = `
     <div onselectstart="return false" id="pre_game_options_menu">
       <div id="pre_game_inner_options_menu">
