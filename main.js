@@ -44,11 +44,11 @@ function firefetch(dataobj){
 //BEGIN FETCH STATS
 function pullstats(callback){
   fetch('https://memorygameapi.herokuapp.com/stats').then(results => {
-        return results.json();
-      }).then(data => {
-        callback(data);
-        return data
-      })
+      return results.json();
+    }).then(data => {
+      callback(data);
+      return data
+    })
 }
 //END FETCH STATS
 createHeader();
