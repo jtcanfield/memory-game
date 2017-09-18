@@ -66,9 +66,40 @@ function createHeader(){
 askForName();
 //STATS
 function showstats(){
-  pullstats(function(x){
-    console.log(x)
-  });
+  var statsbody = document.querySelector(".statsdiv");
+  if (document.querySelector(".statisticsholderactive")){
+    var holder = `
+    <div class="statsdiv">
+      <button onclick="showstats()">Stats</button>
+    </div>
+    `;
+    statsbody.innerHTML = holder;
+    return
+  } else {
+    pullstats(function(x){
+      var holder = `
+      <div class="statsdiv">
+        <button onclick="showstats()">Stats</button>
+      </div>
+      <div class="statisticsholderactive">
+      </div>
+      `;
+      statsbody.innerHTML = holder;
+      var statsholder = document.querySelector(".statisticsholderactive");
+      x.map((players)=>{
+        var playerdiv = document.createElement('div');
+        var holder = `
+        <p>Player: ${players.player}</p>
+        <p>Cards: ${players.cards}</p>
+        <p>Game Status: ${players.status}</p>
+        <p>Time: ${players.time}</p>
+        <p>Health: ${players.health}</p>
+        `;
+        playerdiv.innerHTML = holder;
+        statsholder.appendChild(playerdiv);
+      })
+    });
+  }
 }
 //STATS
 //BEGIN NAME ENTRY
