@@ -59,7 +59,7 @@ function createHeader(){
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://fonts.googleapis.com/css?family=Roboto|Shrikhand" rel="stylesheet">
   <link href="style.css" type="text/css" rel="stylesheet">
-  <title>The Annoying Memory Game</title>
+  <title>Memory Game</title>
   `;
     setHeader.innerHTML = holder;
 }
@@ -241,7 +241,7 @@ function startCountDown(){
 function createGameBoard(){
 var holderLargeDivisions = `
     <div onselectstart="return false" id="game_body">
-      <h1>The Annoying Memory Game</h1>
+      <h1>Memory Game</h1>
         <div id="clockdiv"></div>
         <p>Health</p>
         <div id="health_bar"><span id="health_left"><span id="health_remover"></span></span></div>
